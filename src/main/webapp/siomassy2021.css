@@ -1,0 +1,76 @@
+/* Variables css définies pour toutes les règles.
+ * Toutes sont préfixées de 2 tirets pour éviter un conflit avec un mot-clé css
+ */
+:root {
+  --bgHover: lightblue;
+  --bgLight: #EEE;
+  --navHeight: calc(1.2em + 2ex);
+  --cardBg: lavender;
+}
+
+/* Zone de navigation (liens) */
+nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+nav > a {
+  padding: 1ex;
+  text-decoration: none;
+  line-height: 1.2em;
+}
+nav > a:hover {
+  background-color: var(--bgHover);
+}
+/* le menu complet de navigation */
+#mainNav {
+  background-color: var(--cardBg);
+  position: fixed; /* ne défile pas */
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: absolute; /*pour prendre en compte le menu de navigation */
+  top: var(--navHeight);
+  left: 0;
+}
+
+/* flex en ligne avec wrap */
+.flex-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.flex-wrap > * {
+  max-width: calc(50% - 4em);
+  margin: 1em;
+}
+article {
+  padding: 1em;
+  margin: 1em;
+  background-color: var(--bgLight);
+  border-radius: 1em;
+}
+
+.erreur {
+  color: red;
+}
+tr:nth-child(even) {
+  background-color: #EEEEEE;
+}
+tr:nth-child(odd) {
+  background-color: #DDDDDD;
+}
+tr:first-child {
+  background-color: #CCCCCC;
+}
+td, th {
+  padding: 0.5em 1em;
+}
+a:link.lienPasSouligne {
+  text-decoration: none;
+}
