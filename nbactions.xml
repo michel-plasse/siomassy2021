@@ -10,15 +10,15 @@
     </goals>
   </action>
   <action>
-            <actionName>test.single</actionName>
-            <packagings>
-                <packaging>*</packaging>
-            </packagings>
-            <goals>
-                <goal>surefire:test</goal>
-            </goals>
-            <properties>
-                <test>${packageClassName}</test>
-            </properties>
-        </action>
+    <actionName>test.single</actionName>
+    <packagings>
+      <packaging>*</packaging>
+    </packagings>
+    <goals>
+      <goal>surefire:test</goal>
+    </goals>
+    <properties>
+      <test>${packageClassName}</test>
+    </properties>
+  </action>
 </actions>
