@@ -17,3 +17,9 @@ Vue -> Navigateur: html
 Créer le contrôleur et une vue minimale, et tester
 Pour cela, créer une servlet MesCanauxServlet dans fr.siomassy2021.controller, avec
 le chemin (utl) /mescanaux.
+=> commit
+
+2e étape
+Mettre des canaux en dur dans le contrôleur,
+et les afficher dans la JSP.
+=> commit
