@@ -1,0 +1,13 @@
+@startuml
+participant Navigateur
+participant Vue
+
+Navigateur -> Controleur: GET /mescanaux
+Controleur -> Controleur: récupère user de la session
+Controleur -> Dao: CanalDao.getByMemberId(user.getId())
+Dao -> SGBD: SELECT ...
+SGBD -> Dao: lignes trouvées
+Dao -> Controleur: ArrayList<Canal>
+Controleur -> Vue: mesCanaux.jsp
+Vue -> Navigateur: html
+@enduml
