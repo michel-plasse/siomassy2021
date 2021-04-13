@@ -1,5 +1,6 @@
 package fr.siomassy2021.controller;
 
+import fr.siomassy2021.dao.CanalDao;
 import fr.siomassy2021.model.Canal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,10 +31,10 @@ public class MesCanauxServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    // Recuperer les canaux (d'abord mis en dur)
-    List<Canal> canaux = new ArrayList<Canal>();
-    canaux.add(new Canal(1, "BTS SIO 2021"));
-    canaux.add(new Canal(1, "CDA 2021"));
+    // Le member id en dur
+    int memberId = 1;
+    // Recuperer les canaux 
+    List<Canal> canaux = CanalDao.getByMemberId(memberId);
     // Mettre les données (les canaux) en post-it de la requête
     // avec le nom "canaux"
     request.setAttribute("canaux", canaux);

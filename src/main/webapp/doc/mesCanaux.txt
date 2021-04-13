@@ -23,3 +23,8 @@ le chemin (utl) /mescanaux.
 Mettre des canaux en dur dans le contrôleur,
 et les afficher dans la JSP.
 => commit
+
+3e étape
+Appel de la Dao, qui construit la liste en dur
+Le memberId est aussi mis en dur à 1
+=> commit
