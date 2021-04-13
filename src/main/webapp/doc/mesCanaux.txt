@@ -11,3 +11,9 @@ Dao -> Controleur: ArrayList<Canal>
 Controleur -> Vue: mesCanaux.jsp
 Vue -> Navigateur: html
 @enduml
+
+
+1ere étape
+Créer le contrôleur et une vue minimale, et tester
+Pour cela, créer une servlet MesCanauxServlet dans fr.siomassy2021.controller, avec
+le chemin (utl) /mescanaux.
