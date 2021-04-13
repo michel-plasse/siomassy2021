@@ -12,7 +12,7 @@ ${msg}
   <p>Elle est développée en Java.</p>
 </section>
 <h2>Quelques points techniques</h2>
-<section class="flex-wrap">
+<section id="index_articles">
   <article>
     <h3>MVC</h3>
     <p>A chaque URL est associée un contrôleur, implémenté par une servlet. 
@@ -33,54 +33,56 @@ ${msg}
       via <code>&dollar;{applicationScope["uneVariableDApplication"]}</code>.</p>
   </article>
 
-  <div>
-    <article>
-      <h3>Mise en commun de menus et bas de page</h3>
-      <p>Toutes les pages de l'application affichent le même menu en haut et le
-        même bas de page.
-        <br/>Le naut de page et le bas de page sont écrits dans les fichiers 
-        <code>header.tag</code> et <code>footer.tag</code> situés dans 
-        <code>WEB-INF/tags/</code>.
-        <br/>Ils sont inclus dans les JSP via <code>&lt;p:header/></code> et 
-        <code>&lt;p:footer/></code>.</p>
-    </article>
+  <article>
+    <h3>Mise en commun de menus et bas de page</h3>
+    <p>Toutes les pages de l'application affichent le même menu en haut et le
+      même bas de page.
+      <br/>Le naut de page et le bas de page sont écrits dans les fichiers 
+      <code>header.tag</code> et <code>footer.tag</code> situés dans 
+      <code>WEB-INF/tags/</code>.
+      <br/>Ils sont inclus dans les JSP via <code>&lt;p:header/></code> et 
+      <code>&lt;p:footer/></code>.</p>
+  </article>
 
-    <article>
-      <h3>Pages à accès protégé</h3>
-      <p>Excepté quelques pages d'accès public, la plupart nécessitent une 
-        authentification.
-        <br/>
-        Ceci est contrôlé par la classe <code>context.ConnectionFilter</code>,
-        qui, implémentant l'interface <code>javax.servlet.Filter</code>, intercepte 
-        toutes les requêtes HTTP avant de les passer à la servlet correspondante.<:p>
-    </article>
-  </div>
-  
+  <article>
+    <h3>Pages à accès protégé</h3>
+    <p>Excepté quelques pages d'accès public, la plupart nécessitent une 
+      authentification.
+    </p>
+    <p>Ceci est contrôlé par la classe <code>context.ConnectionFilter</code>,
+      qui, implémentant l'interface <code>javax.servlet.Filter</code>, intercepte 
+      toutes les requêtes HTTP avant de les passer à la servlet correspondante.</p>
+  </article>
+
+  <article style="clear:left;">
+    <h3>Initialisations au démarrage de l'application</h3>
+    <p>La classe <code>context.ContextListener</code>, qui implémente l'interface
+      <code>javax.servlet.ServletContextListener</code>, initialise les deux
+      compteurs (nombre d'utilisateurs et nombre de ceux identifiés après une
+      connexion réussie).</p>
+    <p>Ces deux compteurs ont pour portée application, et sont
+      accessible dans les servlets et les JSP. Par exemple, dans une servlet :</p>
+    <pre>
+nb = getServletContext().getAttribute("nbUtilisateurs");
+setAttribute("nbUtilisateurs", unEntier)</pre>
+    Et dans une JSP :
+    <pre>&dollar;{applicationScope["nbUtilisateurs"]}</pre>
+  </article>
+
   <article>
     <h3>Démarrage/fin de session</h3>
     <p>Le nombre d'utilisateurs (nombre de navigateurs consultant l'application)
       est incrémenté/décrémenté à chaque création/fin
       d'une session utilisateur, dans la classe <code>context.SessionListener</code> 
       qui implémente l'interface <code>javax.servlet.http.HttpSessionListener</code>.
-      <br/>
-      Le nombre d'utilisateurs connectés est quant à lui incrémenté/décrémenté
-      dans la servlet <code>ConnexionServlet</code>.
-      Ces deux nombres sont stockés dans une variable de portée application,
-      accessible dans les servlets et les JSP. Par exemple, pour le nombre 
-      d'utilisateurs :
-      <code>getServletContext().getAttribute("nbUtilisateurs")</code> et
-      <code>setAttribute("nbUtilisateurs", unEntier)</code>, dans une servlet,
-      et <code>&dollar;{applicationScope["nbUtilisateurs"]}</code> dans une JSP.</p>
-  </article>
-
-  <article>
-    <h3>Initialisations au démarrage de l'application</h3>
-    <p>La classe <code>context.ContextListener</code>, qui implémente l'interface
-      <code>javax.servlet.ServletContextListener</code>, initialise les deux
-      compteurs (nombre d'utilisateurs et nombre de ceux identifiés après une
-      connexion réussie).</p>
+    </p>
+    <p>Le nombre d'utilisateurs connectés est quant à lui incrémenté/décrémenté
+      dans la servlet <code>ConnexionServlet</code> :
+    <pre>int nb = (int) context.getAttribute("nbIdentifies");
+context.setAttribute("nbIdentifies", nb + 1);</pre>
   </article>
 </section>
+
 <section>
   <h1>Référence technique</h1>
   <ul>

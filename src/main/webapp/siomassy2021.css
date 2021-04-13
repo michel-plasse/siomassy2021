@@ -3,7 +3,8 @@
  */
 :root {
   --bgHover: lightblue;
-  --bgLight: #EEE;
+  --bgLight: lavender;
+  --borderBgLight: #bfbffd;
   --navHeight: calc(1.2em + 2ex);
   --cardBg: lavender;
 }
@@ -31,29 +32,27 @@ nav > a:hover {
   width: 100%;
   margin: 0;
   padding: 0;
+  border-bottom: solid 1px var(--borderBgLight);
 }
 
 body {
   position: absolute; /*pour prendre en compte le menu de navigation */
-  top: var(--navHeight);
+  top: calc(var(--navHeight) + 1px);
   left: 0;
+  margin: 1em;
 }
 
 /* flex en ligne avec wrap */
-.flex-wrap {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-.flex-wrap > * {
-  max-width: calc(50% - 4em);
-  margin: 1em;
-}
-article {
-  padding: 1em;
+#index_articles > * {
+  float: left;
+  padding: 0 1em;
   margin: 1em;
   background-color: var(--bgLight);
   border-radius: 1em;
+  max-width: 30em;
+}
+#index_articles ~* {
+  clear: left;
 }
 
 .erreur {
