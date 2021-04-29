@@ -2,14 +2,15 @@
 <p:header title="SIO Massy 2021"/>
 <%-- Message d'erreur ou pas, au cas où --%>
 ${msg}
-<section>
-  <h1>SIO Massy 2021</h1>
-  <a href="http://54.37.157.233:8080/siomassy2021/">Version en ligne</a>
+<h1>SIO Massy 2021</h1>
+<section class="flexh">
   <p>Cette application est le projet final des BTS SIO 2021 du Greta de Massy, 
     étudiants de formation continue qui le préparent en un an.</p>
   <p>Elle explore un support à la formation en ligne, complémentaire
     aux moyens audio/vidéo/partage d'écran.</p>
-  <p>Elle est développée en Java.</p>
+  <p>Elle est développée en Java.  
+    <a href="http://54.37.157.233:8080/siomassy2021/">Version en ligne</a>
+  </p>
 </section>
 <h2>Quelques points techniques</h2>
 <section id="index_articles">

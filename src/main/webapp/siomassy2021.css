@@ -58,6 +58,11 @@ body {
 .erreur {
   color: red;
 }
+/* Horizontal flex container */
+.flexh {
+  display: flex;  
+}
+
 tr:nth-child(even) {
   background-color: #EEEEEE;
 }
