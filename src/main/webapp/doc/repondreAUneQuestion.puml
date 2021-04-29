@@ -8,7 +8,7 @@ Navigateur -> Controleur: GET /questions?idCanal=...
 Controleur -> Controleur: verifie idCanal est entier
 Controleur -> Dao: CanalDao.getQuestionsByIdCanal(getIdCanal())
 Dao -> SGBD: SELECT ...
-SGBD -> Dao: questions trouvées 
+SGBD -> Dao: questions trouvees 
 Dao -> Controleur: List<Questions>;
 Controleur -> Vue: questions.jsp
 Vue -> Navigateur: ListeQuestions
