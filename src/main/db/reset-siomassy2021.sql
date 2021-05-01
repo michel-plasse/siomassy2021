@@ -251,4 +251,10 @@ BEGIN
 	END;
 END$$
 
-CALL reset_siomassy2021(NULL)$$
+DROP PROCEDURE IF EXISTS reset_to_now$$
+CREATE PROCEDURE reset_to_now()
+BEGIN
+  CALL reset_siomassy2021(NOW());
+END$$
+
+CALL reset_to_now()$$
