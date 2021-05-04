@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class Database {
 
    protected static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-   protected static final String URL = "jdbc:mysql://localhost/siomassy2021";
+   protected static final String URL = "jdbc:mysql://localhost/siomassy2021?noAccessToProcedureBodies=true";
    protected static final String USER = "siomassy2021_user";
    protected static final String PASSWORD = "siomassy2021_pwd";
 
