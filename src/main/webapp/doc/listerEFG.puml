@@ -4,7 +4,7 @@
 participant Navigateur
 participant Vue
 
-Navigateur -> Controleur: GET /efgs?id=...
+Navigateur -> Controleur: GET /efgs?idcanal=...
 Controleur -> Controleur: verifie idCanal est entier
 Controleur -> Dao: CanalDao.getEFGSByIdCanal(getIdCanal())
 Dao -> SGBD: SELECT ...
@@ -17,12 +17,12 @@ Vue -> Navigateur: ListeEFGs
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
 1ere étape
 Créer le contrôleur et une vue minimale, et tester
-Pour cela, créer une servlet MesCanauxServlet dans fr.siomassy2021.controller, avec
-le chemin (utl) /mescanaux.
+Pour cela, créer une servlet ListerEFGServlet dans fr.siomassy2021.controller, avec
+le chemin (utl) /efgs
 => commit
 
 2e étape
-Mettre des canaux en dur dans le contrôleur,
+Mettre des EFGs en dur dans le contrôleur,
 et les afficher dans la JSP.
 => commit
 
