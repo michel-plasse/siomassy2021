@@ -1,9 +1,3 @@
-<%-- 
-    Document   : questions
-    Created on : 27 avr. 2021, 16:49:03
-    Author     : KIMONA
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
