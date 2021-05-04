@@ -5,6 +5,7 @@
  */
 package fr.siomassy2021.controller;
 
+import fr.siomassy2021.dao.CanalDao;
 import fr.siomassy2021.model.Question;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,11 +29,12 @@ public class ListerQuestionsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Question> questions = new ArrayList() ;
-        
-        questions.add(new Question ("Avez-vous fini ?", 2));
-        questions.add(new Question ("Combien de temps voulez-vous pour ce TP ?", 0));
+        int idCanal= 1;
+        // appel a la DAO 
+        List<Question> questions = CanalDao.getQuestionsByIdCanal(idCanal) ;
+        // mis en post'it
         request.setAttribute("questions", questions);
+        // passage a la jsp
         request.getRequestDispatcher(VUE).forward(request, response);
     }
 

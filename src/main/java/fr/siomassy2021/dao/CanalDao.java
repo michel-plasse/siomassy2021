@@ -1,17 +1,25 @@
 package fr.siomassy2021.dao;
 
 import fr.siomassy2021.model.Canal;
+import fr.siomassy2021.model.Question;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CanalDao {
 
-  public static List<Canal> getByMemberId(int memberId) {
-    // Le résultat est toujours appelé result
-    List<Canal> result = new ArrayList<Canal>();
-    // Les canaux d'abord mis en dur
-    result.add(new Canal(1, "BTS SIO 2021"));
-    result.add(new Canal(1, "CDA 2021"));
-    return result;
-  }
+    public static List<Canal> getByMemberId(int memberId) {
+        // Le résultat est toujours appelé result
+        List<Canal> result = new ArrayList<Canal>();
+        // Les canaux d'abord mis en dur
+        result.add(new Canal(1, "BTS SIO 2021"));
+        result.add(new Canal(1, "CDA 2021"));
+        return result;
+    }
+
+    public static List<Question> getQuestionsByIdCanal(int idCanal) {
+        List<Question> result = new ArrayList<Question>();
+        result.add(new Question("Avez-vous fini ?", 2));
+        result.add(new Question("Combien de temps voulez-vous pour ce TP ?", 0));
+        return result;
+    }
 }
