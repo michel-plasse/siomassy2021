@@ -1,11 +1,10 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="p" tagdir="/WEB-INF/tags/"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Question</h1>
-    </body>
-</html>
+<p:header title="Mes canaux"/>
+<h1>Mes questions</h1>
+<ol>
+  <c:forEach items="${questions}" var="question">
+      <li>${question.libelle} (manque ${question.nbNonReponses} réponses) </li>
+  </c:forEach>
+</ol>
