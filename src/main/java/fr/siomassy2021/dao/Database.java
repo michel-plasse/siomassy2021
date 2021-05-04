@@ -1,11 +1,12 @@
 package fr.siomassy2021.dao;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class Database {
 
-   protected static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
-   protected static final String URL = "jdbc:mysql://localhost/siomassy2021";
+   protected static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
+   protected static final String URL = "jdbc:mysql://localhost/siomassy2021?noAccessToProcedureBodies=true";
    protected static final String USER = "siomassy2021_user";
    protected static final String PASSWORD = "siomassy2021_pwd";
 
@@ -42,12 +43,13 @@ public class Database {
    }
 
    /** Réinitialise la base de données en appelant la procédure
-    * stockée produits_refresh().
+    * stockée siomassy2021_reset().
     * @throws SQLException 
     */
-   public static void reset() throws SQLException {
+   public static void reset(LocalDateTime dateEffet) throws SQLException {
       Connection connection = Database.getConnection();
-      CallableStatement stmt = connection.prepareCall("CALL siomassy2021_reset()");
+      CallableStatement stmt = connection.prepareCall("CALL reset_siomassy2021(?)");
+      stmt.setTimestamp(1, Timestamp.valueOf(dateEffet));
       stmt.execute();
       stmt.close();
       connection.close();

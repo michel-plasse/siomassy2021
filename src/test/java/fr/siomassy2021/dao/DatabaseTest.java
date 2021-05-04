@@ -7,6 +7,7 @@ package fr.siomassy2021.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,7 +26,7 @@ public class DatabaseTest {
   @Test
   public void testReset() throws Exception {
     System.out.println("reset");
-    assertDoesNotThrow(() -> {Database.reset();});
+    assertDoesNotThrow(() -> {Database.reset(LocalDateTime.now());});
   }
   
 }

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,7 @@ public class ResetDBServlet extends HttpServlet {
           HttpServletResponse response)
           throws ServletException, IOException {
     try {
-      Database.reset();
+      Database.reset(LocalDateTime.now());
       request.setAttribute("msg", MSG_OK);
     } catch (SQLException ex) {
       Logger.getLogger(ResetDBServlet.class.getName()).log(Level.SEVERE, null, ex);
