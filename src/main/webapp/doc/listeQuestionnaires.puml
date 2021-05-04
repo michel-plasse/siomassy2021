@@ -5,10 +5,10 @@ participant Navigateur
 participant Vue
 
 Navigateur -> Controleur: GET /questionnaires
-Controleur -> Controleur: récupère le user de la session
+Controleur -> Controleur: recupere le user de la session
 Controleur -> Dao: QuestionnaireDao.\ngetByIdFormateur(idformateur)
 Dao -> SGBD: SELECT ...
-SGBD ->Dao: questionnaires trouvés
+SGBD ->Dao: questionnaires trouves
 Dao -> Controleur: List<Questionnaire>
 Controleur -> Vue: questionnaires.jsp
 Vue -> Navigateur: html
@@ -17,7 +17,7 @@ Vue -> Navigateur: html
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
 1ere étape
 Créer le contrôleur et une vue minimale, et tester
-Pour cela, créer une servlet MesCanauxServlet dans fr.siomassy2021.controller, avec
+Pour cela, créer une servlet QuestionnairesServlet dans fr.siomassy2021.controller, avec
 le chemin (utl) /mescanaux.
 => commit
 
