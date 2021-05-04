@@ -5,6 +5,11 @@
 <h1>Mes questions</h1>
 <ol>
   <c:forEach items="${questions}" var="question">
-      <li>${question.libelle} (manque ${question.nbNonReponses} réponses) </li>
+      <li>${question.libelle}
+          <c:forEach items="${question.reponses}" var="reponse">
+              ${reponse.key} (${reponse.value})
+          </c:forEach>
+          (manque ${question.nbNonReponses} réponses)
+      </li>
   </c:forEach>
 </ol>

@@ -5,6 +5,8 @@
  */
 package fr.siomassy2021.model;
 
+import java.util.HashMap;
+
 /**
  *
  * @author borelibombo
@@ -13,12 +15,23 @@ public class Question {
     
     private String libelle;
     private int nbNonReponses;
+    private HashMap<String,Integer> reponses;
 
-    public Question(String libelle, int nbNonReponses) {
+    public Question(String libelle, int nbNonReponses, HashMap<String, Integer> lesReponses) {
         this.libelle = libelle;
         this.nbNonReponses = nbNonReponses;
+        this.reponses = lesReponses;
     }
 
+    public HashMap<String, Integer> getReponses() {
+        return reponses;
+    }
+
+    public void setReponses(HashMap<String, Integer> reponses) {
+        this.reponses = reponses;
+    }
+    
+   
     public int getNbNonReponses() {
         return nbNonReponses;
     }

@@ -3,6 +3,7 @@ package fr.siomassy2021.dao;
 import fr.siomassy2021.model.Canal;
 import fr.siomassy2021.model.Question;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CanalDao {
@@ -17,9 +18,18 @@ public class CanalDao {
     }
 
     public static List<Question> getQuestionsByIdCanal(int idCanal) {
+        
         List<Question> result = new ArrayList<Question>();
-        result.add(new Question("Avez-vous fini ?", 2));
-        result.add(new Question("Combien de temps voulez-vous pour ce TP ?", 0));
+        
+        HashMap<String,Integer> reponses = new HashMap();
+        reponses.put("oui", 2);
+        reponses.put("non", 1);
+        result.add(new Question("Avez-vous fini ?", 2,reponses));
+        reponses= new HashMap();
+        reponses.put("1h",2);
+        reponses.put("30min",1);
+        reponses.put("1h30min",2);
+        result.add(new Question("Combien de temps voulez-vous pour ce TP ?", 0, reponses));
         return result;
     }
 }
