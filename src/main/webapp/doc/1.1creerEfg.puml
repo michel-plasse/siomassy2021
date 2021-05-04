@@ -1,0 +1,35 @@
+@startuml
+' par défaut, les couches sont disposées dans l'ordre d'apparition
+' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
+participant Navigateur
+participant Vue
+
+Navigateur -> Controleur: GET /creerEFG?idCanal=...
+Controleur -> Controleur: verifie que idCanal est entier
+Controleur -> Vue: creerEFG.jsp
+Vue -> Navigateur: formulaire
+Navigateur -> Controleur : Post /creerEFG \n idCanal, intitule
+Controleur -> Controleur : Verifier parametre 
+Controleur -> Dao : efg = new EFG(...); \n Canaldao.insertEFG(efg)
+Dao -> Controleur : Ok ou exception
+Controleur -> Vue: message.jsp
+Vue -> Navigateur: message
+@enduml
+
+/' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
+1ere étape
+Créer le contrôleur et une vue minimale, et tester
+Pour cela, créer une servlet MesCanauxServlet dans fr.siomassy2021.controller, avec
+le chemin (utl) /mescanaux.
+=> commit
+
+2e étape
+Mettre des canaux en dur dans le contrôleur,
+et les afficher dans la JSP.
+=> commit
+
+3e étape
+Appel de la Dao, qui construit la liste en dur
+Le memberId est aussi mis en dur à 1
+=> commit
+'/
