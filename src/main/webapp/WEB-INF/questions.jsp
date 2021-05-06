@@ -1,17 +1,15 @@
-<%-- 
-    Document   : questions
-    Created on : 27 avr. 2021, 16:49:03
-    Author     : KIMONA
---%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="p" tagdir="/WEB-INF/tags/"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Question</h1>
-    </body>
-</html>
+<p:header title="Mes canaux"/>
+<h1>Mes questions</h1>
+<ol>
+  <c:forEach items="${questions}" var="question">
+      <li>${question.libelle}
+          <c:forEach items="${question.reponses}" var="reponse">
+              ${reponse.key} (${reponse.value})
+          </c:forEach>
+          (manque ${question.nbNonReponses} réponses)
+      </li>
+  </c:forEach>
+</ol>
