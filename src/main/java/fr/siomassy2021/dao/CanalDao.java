@@ -25,13 +25,13 @@ public class CanalDao {
         //pour les questions oui/non 
         reponses.put("oui", 2);
         reponses.put("non", 1);
-        result.add(new Question("Avez-vous fini ?", 2,reponses));
+        result.add(new Question("Avez-vous fini ?", 2,2,reponses));
         reponses= new HashMap();
         // pour les questions à choix multiples : le String correspond à la reponse et le int au nombre de participant l'ayant choisit
         reponses.put("1h",2);
         reponses.put("30min",1);
         reponses.put("1h30min",2);
-        result.add(new Question("Combien de temps voulez-vous pour ce TP ?", 0, reponses));
+        result.add(new Question("Combien de temps voulez-vous pour ce TP ?", 0,3, reponses));
         return result;
     }
 }
