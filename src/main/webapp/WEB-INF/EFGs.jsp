@@ -16,7 +16,7 @@
         <h1>Liste d'EFGs</h1>
         
         <ol>
-            <c:forEach items="${listeEFGs}" var="efg">
+            <c:forEach items="${EFGs}" var="efg">
                 <li>${efg.intitule}</li>
             </c:forEach>
         </ol>

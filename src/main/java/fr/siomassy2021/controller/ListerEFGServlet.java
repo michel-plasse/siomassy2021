@@ -39,16 +39,16 @@ public class ListerEFGServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Efg> listeEFG = new ArrayList();
-        listeEFG.add(new Efg("TP définir objectif"));
-        listeEFG.add(new Efg("TP cadrage"));
-        listeEFG.add(new Efg("TP tests acceptation"));
+        List<Efg> EFGs = new ArrayList();
+        EFGs.add(new Efg("TP définir objectif"));
+        EFGs.add(new Efg("TP cadrage"));
+        EFGs.add(new Efg("TP tests acceptation"));
         
         
         int idCanal= 1;
         // appel a la DAO 
         //List<Efg> listeEFG = EfgDAO.getByCanalId(1);
-        request.setAttribute("listeEFGs", listeEFG);
+        request.setAttribute("EFGs", EFGs);
      
         request.getRequestDispatcher(VUE).forward(request, response);
     }
