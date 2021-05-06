@@ -5,7 +5,10 @@
  */
 package fr.siomassy2021.controller;
 
+import fr.siomassy2021.dao.CanalDao;
+import fr.siomassy2021.dao.EfgDAO;
 import fr.siomassy2021.model.Efg;
+import fr.siomassy2021.model.Question;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -36,11 +39,17 @@ public class ListerEFGServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Efg> listeEFG = new ArrayList();
+ /*       List<Efg> listeEFG = new ArrayList();
         listeEFG.add(new Efg("TP définir objectif"));
         listeEFG.add(new Efg("TP cadrage"));
         listeEFG.add(new Efg("TP tests acceptation"));
+        
+        
+        int idCanal= 1;
+        // appel a la DAO 
+        List<Efg> listeEFG = EfgDAO.getByCanalId(1);
         request.setAttribute("listeEFGs", listeEFG);
+        */
         request.getRequestDispatcher(VUE).forward(request, response);
     }
 
