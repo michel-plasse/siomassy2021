@@ -19,13 +19,11 @@ public class InscriptionDAO {
     public int registration(Personne personne) throws ClassNotFoundException, SQLException {
         
         Connection connection = Database.getConnection();
-        String insert = "INSERT INTO client (prenom, nom, email,pwd,tel) VALUES ( '"+personne.getPrenom()+"', '"+personne.getNom()+"', '"+personne.getEmail()+"', '"+personne.getPwd()+"', '"+personne.getTel()+"');";
+        String insert = "INSERT INTO personne (prenom, nom, email,pwd,tel) VALUES ( '"+personne.getPrenom()+"', '"+personne.getNom()+"', '"+personne.getEmail()+"', '"+personne.getPwd()+"', '"+personne.getTel()+"');";
 
         Statement canalInscription = connection.createStatement();
         
         canalInscription.execute(insert);
-        
-        
         
         
         return 0;

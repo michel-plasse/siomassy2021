@@ -6,7 +6,6 @@
 package fr.siomassy2021.controller;
 
 import fr.siomassy2021.dao.CanalDao;
-import fr.siomassy2021.dao.EfgDAO;
 import fr.siomassy2021.model.Efg;
 import fr.siomassy2021.model.Question;
 import java.io.IOException;
@@ -30,16 +29,16 @@ import javax.servlet.http.HttpServletResponse;
 public class ListerEFGServlet extends HttpServlet {
     
     private final String VUE = "WEB-INF/EFGs.jsp";
-
+    
     List<Efg> listeEFG;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        EfgDAO dao = new EfgDAO();    
+        CanalDao dao = new CanalDao();    
         
         try {
-            listeEFG = dao.getByCanalId2(1);
+            listeEFG = dao.getEFGSByIdCanal(1);
         } catch (SQLException ex) {
             Logger.getLogger(ListerEFGServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
