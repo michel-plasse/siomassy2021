@@ -37,11 +37,11 @@ public class CanalDao {
         result.add(new Question("Combien de temps voulez-vous pour ce TP ?", 0, reponses));
         return result;
     }
-    
+
         public static List<Efg> getEFGSByIdCanal(int idcanal) throws SQLException {
         List<Efg> liste = new ArrayList<>();
         Connection connection = Database.getConnection();
-        
+    
         Statement canal1 = connection.createStatement(); 
         
         String requete = "select * from efg  where id_canal = '"+idcanal+"';";
@@ -49,23 +49,17 @@ public class CanalDao {
         ResultSet res = canal1.executeQuery(requete); 
         
         while(res.next()) {
-            int idefg = res.getInt("id_efg");
-
+            int idEfg = res.getInt("id_efg");
             String intitule = res.getString("intitule");
             int idcreateur = res.getInt("id_createur");
             int id_canal = res.getInt("id_canal");
 
             Efg e1 = new Efg(intitule, idcreateur, id_canal); //Créer une instance de client pour chaque client dans la base
-            
+       
             liste.add(e1); // on ajoute l'instance 
 
         }
         return liste;
-        
-    }
-    
-       
-    
-    
-    
+    } 
+ 
 }
