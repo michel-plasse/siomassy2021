@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ListerEFGServlet extends HttpServlet {
     
     private final String VUE = "WEB-INF/EFGs.jsp";
+    private final String VUE_ERREUR ="WEB-INF/erreur.jsp";
     
     List<Efg> listeEFG;
     @Override
@@ -36,15 +37,16 @@ public class ListerEFGServlet extends HttpServlet {
             throws ServletException, IOException {
         
         CanalDao dao = new CanalDao();    
-        
+        String vue = VUE;
         try {
             listeEFG = dao.getEFGSByIdCanal(1);
+            request.setAttribute("EFGs", listeEFG);
         } catch (SQLException ex) {
             Logger.getLogger(ListerEFGServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("message", ex.getMessage());
+            vue = VUE_ERREUR;
         }
-        request.setAttribute("EFGs", listeEFG);
-     
-        request.getRequestDispatcher(VUE).forward(request, response);
+        request.getRequestDispatcher(vue).forward(request, response);
     }
 
 

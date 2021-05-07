@@ -15,7 +15,7 @@
     <body>
         <h1>Formulaire d'inscription !</h1>
         
-        <form action="InscriptionServlet2" method="post">
+        <form method="post">
             <div>
                 <label>Prenom : </label>
                 <input type="text" name="prenom">
