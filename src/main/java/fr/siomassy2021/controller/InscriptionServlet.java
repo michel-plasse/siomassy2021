@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 public class InscriptionServlet extends HttpServlet {
 
     final String VUE = "WEB-INF/inscription.jsp";
+    private final String VUE_ERREUR ="WEB-INF/erreur.jsp";
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -51,6 +52,8 @@ public class InscriptionServlet extends HttpServlet {
         String email = request.getParameter("email");
         String pwd = request.getParameter("pwd");
         String tel = request.getParameter("tel");
+        
+        
 
         Personne p1 = new Personne(prenom, nom, email, tel, pwd);
         
