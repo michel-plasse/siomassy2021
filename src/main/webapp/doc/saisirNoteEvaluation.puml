@@ -1,0 +1,33 @@
+@startuml
+' par défaut, les couches sont disposées dans l'ordre d'apparition
+' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
+participant Navigateur
+participant Vue
+
+Navigateur -> Controleur: GET /notesevaluations?idEtudiant=...&&idEvaluation=...
+Controleur -> Controleur: verifier que les idEtudiant et idEvaluation sont entiers
+Controleur -> Dao: CanalDao.setNoteEvaluationByIdEtudiantAndIdEvaluation(idEtudiant,idEvaluation)
+Dao -> SGBD: Insert ...
+SGBD -> Dao: note inserer
+Dao -> Controleur: Int;
+Controleur -> Vue: noteEvaliation.jsp
+Vue -> Navigateur: html
+@enduml
+
+/' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
+1ere étape
+Créer le contrôleur et une vue minimale, et tester
+Pour cela, créer une servlet NoteEvaluationSetvlet dans fr.siomassy2021.controller, avec
+le chemin (utl) /notesevaluations.
+=> commit
+
+2e étape
+Mettre des questions en dur dans le contrôleur,
+et les afficher dans la JSP.
+=> commit
+
+3e étape
+Appel de la Dao, qui construit la liste en dur
+Le memberId est aussi mis en dur à 1
+=> commit
+'/
