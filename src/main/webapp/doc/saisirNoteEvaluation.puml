@@ -23,7 +23,7 @@ Vue -> Navigateur: html
 1ere étape
 Créer le contrôleur et une vue minimale, et tester
 Pour cela, créer une servlet NoteEvaluationSetvlet dans fr.siomassy2021.controller, avec
-le chemin (utl) /notesevaluations.
+le chemin (utl) /noterEvaluation.
 => commit
 
 2e étape
