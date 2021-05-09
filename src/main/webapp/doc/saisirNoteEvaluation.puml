@@ -4,7 +4,7 @@
 participant Navigateur
 participant Vue
 
-Navigateur -> Controleur: GET /notesevaluations?idEtudiant=...&&idEvaluation=...
+Navigateur -> Controleur: GET /noterEvaluation?idEtudiant=...&&idEvaluation=...
 Controleur -> Controleur: verifier que les idEtudiant et idEvaluation sont entiers
 Controleur -> Dao: CanalDao.setNoteEvaluationByIdEtudiantAndIdEvaluation(idEtudiant,idEvaluation)
 Dao -> SGBD: Insert ...
@@ -15,6 +15,11 @@ Vue -> Navigateur: html
 @enduml
 
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
+
+    L intitulé et la date de passage de l evaluation
+    La liste des étudiants ayant participer
+    Un champ de saisi pour que le formateur insère une note
+
 1ere étape
 Créer le contrôleur et une vue minimale, et tester
 Pour cela, créer une servlet NoteEvaluationSetvlet dans fr.siomassy2021.controller, avec
