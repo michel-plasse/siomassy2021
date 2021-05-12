@@ -54,7 +54,7 @@ public class CanalDao {
             int idcreateur = res.getInt("id_createur");
             int id_canal = res.getInt("id_canal");
 
-            Efg e1 = new Efg(intitule, idcreateur, id_canal); //Créer une instance de client pour chaque client dans la base
+            Efg e1 = new Efg(idEfg, intitule, idcreateur, idcanal); //Créer une instance de client pour chaque client dans la base
 
             liste.add(e1); // on ajoute l'instance 
 
