@@ -39,6 +39,24 @@ public class PersonneDao {
         }
         return result;
     }
+    
+    public boolean verificationExistant(String email) throws SQLException{
+        boolean result = false;
+        Connection connection = Database.getConnection();
+        String sql = "select count(*) as nombre\n" +
+                     "from personne\n" +
+                     "where email =?";
+        PreparedStatement stmt = connection.prepareCall(sql);
+        stmt.setString(1, email);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            if(rs.getInt("nombre") > 0){
+                result = true;
+            }
+        }
+        return result;
+        
+    }
 
     public void insert(Personne personne) throws ClassNotFoundException, SQLException {
 

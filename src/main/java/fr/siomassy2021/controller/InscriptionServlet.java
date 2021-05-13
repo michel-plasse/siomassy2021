@@ -7,6 +7,7 @@ package fr.siomassy2021.controller;
 
 import fr.siomassy2021.dao.PersonneDao;
 import fr.siomassy2021.model.Personne;
+import static java.awt.SystemColor.window;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -43,13 +44,20 @@ public class InscriptionServlet extends HttpServlet {
         String email = request.getParameter("email");
         String pwd = request.getParameter("pwd");
         String tel = request.getParameter("tel");
-        
-        
 
-        Personne p1 = new Personne(prenom, nom, email, tel, pwd);
-        
         PersonneDao dao = new PersonneDao();
         
+        try {
+            if(dao.verificationExistant(email)){
+               
+//                 request.getRequestDispatcher("WEB-INF/erreur.jsp").forward(request, response);
+            }
+                    
+                    } catch (SQLException ex) {
+            Logger.getLogger(InscriptionServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Personne p1 = new Personne(prenom, nom, email, tel, pwd);
         try {
             dao.insert(p1);
         } catch (ClassNotFoundException ex) {
@@ -57,5 +65,6 @@ public class InscriptionServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(InscriptionServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
     }
 }
