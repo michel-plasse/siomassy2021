@@ -9,3 +9,4 @@
 <p:header title="Erreur"/>
 <h1 class="erreur">ERREUR</h1>
 <h1 class="erreur">${message}</h1>
+<p><c:out value="${message}"></c:out></p>

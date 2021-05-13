@@ -49,8 +49,8 @@ public class InscriptionServlet extends HttpServlet {
         
         try {
             if(dao.verificationExistant(email)){
-               
-//                 request.getRequestDispatcher("WEB-INF/erreur.jsp").forward(request, response);
+                request.setAttribute("message", "Cet email existe déjà !");
+                request.getRequestDispatcher(VUE).forward(request, response);
             }
                     
                     } catch (SQLException ex) {
