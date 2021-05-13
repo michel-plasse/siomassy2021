@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <p:header title="Inscription"/>
 <h1>Formulaire d'inscription !</h1>
-<h1 class="erreur">${message}</h1>
+<h2 class="erreur">${message}</h2>
 <div id="formInscription">
     <form method="POST">
         <p><i>Complétez le formulaire. Les champs marqué par </i><em>*</em> sont <em>obligatoires</em></p>
