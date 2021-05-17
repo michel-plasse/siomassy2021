@@ -4,6 +4,7 @@ package fr.siomassy2021.controller;
 
 import fr.siomassy2021.dao.EvaluationDao;
 import fr.siomassy2021.model.Evaluation;
+import fr.siomassy2021.model.Personne;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,10 +38,11 @@ public class ListerEvaluationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         EvaluationDao evaluationDao = new EvaluationDao();
         List<Evaluation> listEvaluations =null;
         try {
-            listEvaluations = evaluationDao.getListEvaluationByPersonne(1);
+            listEvaluations = evaluationDao.getListEvaluationByPersonne(((Personne )session.getAttribute("user")).getId());
         } catch (SQLException ex) {
             Logger.getLogger(ListerEvaluationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
