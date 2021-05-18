@@ -4,13 +4,14 @@
 participant Navigateur
 participant Vue
 
-Navigateur -> Controleur: GET /mesParticipations?idSéance=...
-Controleur -> Controleur: vérifier que le idSéance est entier
-Controleur -> Dao: SéanceDao.getParticipationByIdSéance(user.getId())
+Navigateur -> Controleur: GET /creerQuestionnaire
+Controleur -> Controleur: recupere le user de la session
+Controleur -> Dao: creerQuestionnaireDao.\ngetByIdFormateur(idformateur)
 Dao -> SGBD: SELECT ...
-SGBD -> Dao: Participations trouvées
-Dao -> Controleur: List<Participation>
-Controleur -> Vue: Participations.jsp
+SGBD ->Dao: formulaire questions reponses
+Dao -> Controleur: formulaire ajouter et valider
+Controleur -> Vue: creerQuestionnaire.jsp
+Controleur -> Vue: formulaire ajoute questions et ajoute/choisit réponses et valide
 Vue -> Navigateur: html
 @enduml
 
