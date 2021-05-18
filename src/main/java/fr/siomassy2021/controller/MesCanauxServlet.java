@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "MesCanauxServlet", urlPatterns = {"/mescanaux"})
 public class MesCanauxServlet extends HttpServlet {
-  private String VUE_CANAUX = "WEB-INF/mesCanaux.jsp";
+  private String VUE_CANAUX = "WEB-INF/canaux.jsp";
 
    /**
    * Handles the HTTP <code>GET</code> method.
