@@ -2,8 +2,10 @@ package fr.siomassy2021.dao;
 
 import fr.siomassy2021.model.Canal;
 import fr.siomassy2021.model.Efg;
+import fr.siomassy2021.model.Evaluation;
 import fr.siomassy2021.model.Question;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,7 +13,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 public class CanalDao {
+
+    private static int canal;
 
     public static List<Canal> getByMemberId(int memberId) {
         // Le résultat est toujours appelé result
@@ -19,6 +24,20 @@ public class CanalDao {
         // Les canaux d'abord mis en dur
         result.add(new Canal(1, "BTS SIO 2021"));
         result.add(new Canal(1, "CDA 2021"));
+        return result;
+    }
+
+    public static List<Canal> getAll() throws SQLException {
+        List<Canal> result = new ArrayList<Canal>();
+        Connection connection = Database.getConnection();
+        String sql = "SELECT * FROM canal";
+        PreparedStatement stmt = connection.prepareCall(sql);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            result.add(new Canal(
+                    rs.getInt("id_canal"),
+                    rs.getString("nom")));
+        }
         return result;
     }
 

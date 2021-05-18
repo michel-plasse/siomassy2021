@@ -7,12 +7,13 @@ import java.util.Objects;
  * @author michel
  */
 public class Personne {
-  private int id;
+  private int id, id_groupe;
   private String prenom, nom, email, tel, pwd;
 
   /** 
    * Constructeur
    * @param id
+   * @param id_groupe
    * @param prenom
    * @param nom
    * @param email
@@ -36,6 +37,18 @@ public class Personne {
         this.pwd = pwd;
     }
 
+  
+  public Personne(int id, String prenom, String nom, int id_groupe) {
+    this.id = id;
+    this.prenom = prenom;
+    this.nom = nom;
+    this.id_groupe = id_groupe;
+  }
+  
+  public int getIdGroupe() {
+      return id_groupe;
+  }
+  
   public int getId() {
     return id;
   }
