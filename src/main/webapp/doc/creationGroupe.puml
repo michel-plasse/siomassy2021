@@ -4,7 +4,7 @@
 participant Navigateur
 participant Vue
 ' creation de groupe et ajouter des etudiants 1.2
-Navigateur -> Controleur: POST /EFG?idEFG=...
+Navigateur -> Controleur: POST /creerGroupeEFG...
 Controleur -> Controleur: verifie que l'idEFG est entier  
 Controleur -> Controleur: recupere le user qui est dans la session
 Controleur -> Dao: EFGDao.creerGroupe (idEFG,idUser)
