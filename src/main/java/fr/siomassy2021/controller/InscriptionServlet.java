@@ -67,21 +67,21 @@ public class InscriptionServlet extends HttpServlet {
         boolean booleanEmail = matcherEmail.matches();
 
         // compilation de la regex
-        Pattern regexPrenom = Pattern.compile("/^[A-Z][\\p{L}-]*$/");
+        Pattern regexPrenom = Pattern.compile("^ *$");
         // création d'un moteur de recherche
         Matcher matcherPrenom = regexPrenom.matcher(prenom);
         // lancement de la recherche de toutes les occurrences
         boolean booleanPrenom = matcherPrenom.matches();
 
         // compilation de la regex
-        Pattern regexNom = Pattern.compile("/^[A-Z][\\p{L}-]*$/");
+        Pattern regexNom = Pattern.compile("^ *$");
         // création d'un moteur de recherche
         Matcher matcherNom = regexNom.matcher(nom);
         // lancement de la recherche de toutes les occurrences
         boolean booleanNom = matcherNom.matches();
 
         // compilation de la regex
-        Pattern regexMdp = Pattern.compile("/^[A-Z][\\p{L}-]*$/");
+        Pattern regexMdp = Pattern.compile("^ *$");
         // création d'un moteur de recherche
         Matcher matcherMdp = regexMdp.matcher(pwd);
         // lancement de la recherche de toutes les occurrences
@@ -95,15 +95,15 @@ public class InscriptionServlet extends HttpServlet {
             request.setAttribute("erreur_tel", "Votre téléphone est invalide");
             valide = false;
         }
-        if (!booleanPrenom) {
+        if (booleanPrenom) {
             request.setAttribute("erreur_prenom", "Veuillez remplir le champs prénom correctement");
             valide = false;
         }
-        if (!booleanNom) {
+        if (booleanNom) {
             request.setAttribute("erreur_nom", "Veuillez remplir le champs nom correctement");
             valide = false;
         }
-        if (!booleanMdp) {
+        if (booleanMdp) {
             request.setAttribute("erreur_mdp", "Veuillez remplir le champs mot de passe correctement");
             valide = false;
         }
