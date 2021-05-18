@@ -4,14 +4,13 @@
 participant Navigateur
 participant Vue
 
-Navigateur -> Controleur: GET /efgs?idcanal=...
-Controleur -> Controleur: verifie idCanal est entier
-Controleur -> Dao: CanalDao.getEFGSByIdCanal(getIdCanal())
+Navigateur -> Controleur: GET /canaux
+Controleur -> Dao: CanalDao.getAll()
 Dao -> SGBD: SELECT ...
-SGBD -> Dao: EFG trouvées 
-Dao -> Controleur: List<EFG>;
-Controleur -> Vue: EFGs.jsp
-Vue -> Navigateur: ListeEFGs
+SGBD -> Dao: ca naux trouvés 
+Dao -> Controleur: List<Canal>;
+Controleur -> Vue: canaux.jsp
+Vue -> Navigateur: liste des canaux
 @enduml
 
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)

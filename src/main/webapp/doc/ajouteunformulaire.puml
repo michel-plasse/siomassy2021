@@ -1,24 +1,24 @@
- @startuml
+@startuml
 ' par défaut, les couches sont disposées dans l'ordre d'apparition
 ' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
 participant Navigateur
 participant Vue
 
-Navigateur -> Controleur: GET /questions?idCanal=...
-Controleur -> Controleur: verifie idCanal est entier
-Controleur -> Dao: CanalDao.getQuestionsByIdCanal(getIdCanal())
-Dao -> SGBD: SELECT ...
-SGBD -> Dao: questions trouvées 
-Dao -> Controleur: List<Questions>;
-Controleur -> Vue: questions.jsp
-Vue -> Navigateur: ListeQuestions
+Navigateur -> Controleur: POST /ajouterEntrainement\n avec idquestionnaire et idCanal
+Controleur -> Controleur: Verifie que le idQuestionnaire \n idCanal sont entiers 
+Controleur -> Dao:QuestionnaireDao.\n ajouterEntrainement\n(idQuestionnaire, idCanal)
+Dao -> SGBD: INSERT ...
+SGBD -> Dao:  idEntainement
+Dao -> Controleur: idEntrainement
+Controleur -> Navigateur: response.sendRedirect\n(entrainements?idcanal=...)
+
 @enduml
 
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
 1ere étape
 Créer le contrôleur et une vue minimale, et tester
-Pour cela, créer une servlet MesCanauxServlet dans fr.siomassy2021.controller, avec
-le chemin (utl) /mescanaux.
+Pour cela, créer une servlet monFormulaire Servlet dans fr.siomassy2021.controller, avec
+le chemin (utl) /monformulaire.
 => commit
 
 2e étape

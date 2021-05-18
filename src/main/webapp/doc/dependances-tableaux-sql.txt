@@ -1,0 +1,22 @@
+canal
+personne
+type_question
+	efg
+	evaluation
+	question
+	membre_canal`
+	questionnaire
+	seance
+		entrainement
+		groupe_efg
+		note_evaluation
+		option_question
+		presenace_seance
+		qcm
+		reponse_question
+			entrainement_etudiant
+			membre_groupe_efg
+			option_qcm
+				reponse_entrainement
+
+
