@@ -41,7 +41,7 @@ public class listerGroupesEfg extends HttpServlet {
     private final String VUE= "/WEB-INF/listeGroupesEfg.jsp";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
-        int idEfg = 2;
+        int idEfg = 1;
         List<Groupe> listeGroupesEfg = new ArrayList<Groupe>();
         try {
             listeGroupesEfg = GroupesEfg.getMembresByIdEfg(idEfg);

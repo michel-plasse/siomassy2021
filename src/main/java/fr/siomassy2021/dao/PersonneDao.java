@@ -19,6 +19,21 @@ public class PersonneDao {
    * @param password
    * @return
    */
+    public static Personne getByEmail(String email) throws SQLException {
+        Connection connection = Database.getConnection();
+        String sql = "SELECT id_personne, nom, prenom, email, tel, pwd\n" +
+        "FROM personne\n" +
+        "WHERE email = '" + email + "'";
+        PreparedStatement stmt = connection.prepareCall(sql);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            Personne p = new Personne(rs.getInt("id_personne"), rs.getString("prenom"), rs.getString("nom"), rs.getString("email"), rs.getString("tel"), rs.getString("pwd"));
+            return p;
+        }
+        else
+            return null;
+    }
+    
   public static Personne getByLoginPassword(String login, String password) throws SQLException {
     Personne result = null;
     Connection connection = Database.getConnection();
