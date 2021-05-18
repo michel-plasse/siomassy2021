@@ -17,6 +17,14 @@ public class CanalDao {
         return result;
     }
 
+    public static List<Canal> getAll() {
+        List<Canal> result = new ArrayList<Canal>();
+        // Les canaux d'abord mis en dur
+        result.add(new Canal(1, "BTS SIO 2021"));
+        result.add(new Canal(1, "CDA 2021"));
+        return result;
+    }
+
     public static List<Question> getQuestionsByIdCanal(int idCanal) {
         
         List<Question> result = new ArrayList<Question>();
