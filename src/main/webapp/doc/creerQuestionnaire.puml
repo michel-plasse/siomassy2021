@@ -18,17 +18,17 @@ Vue -> Navigateur: html
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
 1ere étape
 Créer le contrôleur et une vue minimale, et tester
-Pour cela, créer une servlet MesCanauxServlet dans fr.siomassy2021.controller, avec
-le chemin (utl) /mescanaux.
+Pour cela, créer une servlet creerQuestionnaireServlet dans fr.siomassy2021.controller, avec
+le chemin (utl).
 => commit
 
 2e étape
-Mettre des canaux en dur dans le contrôleur,
-et les afficher dans la JSP.
+Creer un questionnaire,ajouter des questions et des reponses et choisir la reponse qui correspond
+et l'afficher dans la JSP.
 => commit
 
 3e étape
-Appel de la Dao, qui construit la liste en dur
-Le memberId est aussi mis en dur à 1
+Appel de la Dao, qui contient le formulaire
+
 => commit
 '/

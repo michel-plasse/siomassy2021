@@ -17,7 +17,7 @@ Vue -> Navigateur: html
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
 1ere étape
 Créer le contrôleur et une vue minimale, et tester
-Pour cela, créer une servlet QuestionnairesServlet dans fr.siomassy2021.controller, avec
+Pour cela, créer une servlet ListeQuestionnairesServlet dans fr.siomassy2021.controller, avec
 le chemin (utl) /mescanaux.
 => commit
 
