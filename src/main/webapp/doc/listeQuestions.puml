@@ -1,0 +1,33 @@
+@startuml
+' par défaut, les couches sont disposées dans l'ordre d'apparition
+' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
+participant Navigateur
+participant Vue
+
+Navigateur -> Controleur: GET /questions?idCanal=...
+Controleur -> Controleur: verifier que idCanal est entier
+Controleur -> Dao: CanalDao.getQuestionsByIdCanal(idCanal)
+Dao -> SGBD: SELECT ...
+SGBD -> Dao: questions trouvées
+Dao -> Controleur: List<Question>;
+Controleur -> Vue: question.jsp
+Vue -> Navigateur: html
+@enduml
+
+/' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
+1ere étape
+Créer le contrôleur et une vue minimale, et tester
+Pour cela, créer une servlet MesCanauxServlet dans fr.siomassy2021.controller, avec
+le chemin (utl) /mescanaux.
+=> commit
+
+2e étape
+Mettre des questions en dur dans le contrôleur,
+et les afficher dans la JSP.
+=> commit
+
+3e étape
+Appel de la Dao, qui construit la liste en dur
+Le memberId est aussi mis en dur à 1
+=> commit
+'/

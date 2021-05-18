@@ -1,0 +1,27 @@
+La base siomassy2021 doit être créée localement (sur votre machine) en la générant
+depuis le modèle, qui doit toujours être synchrone avec.
+Les données y sont insérées en appelant la procédure stockée reset_to_now().
+Elle est définie dans le fichier reset_siomassy2021.sql. Elle fait appel à
+d'autres procédures stockées définies dans apply_to_all_tables.sql.
+=> Exécuter d'abord dans workbench le contenu de apply_to_all_tables.sql, puis de
+reset-siomassy2021.sql
+
+L'application Web se connecte à la base avec l'utilisateur siomassy2021_user, 
+de mot de passe siomassy2021_pwd. Pour créer cet utilisateur, exécutez
+create_user.sql.
+
+
+L'utilisateur, la base et ses procédures sont déjà créée sur le serveur de 
+développement (voir http://54.37.157.233/phpmyadmin/).
+Pour vous connecter à phpmyadmin, utilisez l'utilisateur siomassy2021_user.
+Il a tous les droits sur la base, sauf celui de la supprimer.
+S'il y a besoin de recréer la base, il faut supprimer tous les tableaux
+en appelant la procédure stockée drop_all_tables, puis relancer le script généré 
+par workbench à partir du mdèle.
+
+Pour réinitialiser les données, en local ou sur le serveur de développement,
+lancez la procédure stockée reset_to_now, ou cliquez sur le lien prévu sur
+la page d'accueil de l'application, qui lance cette procédure.
+
+
+
