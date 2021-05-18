@@ -51,40 +51,31 @@ public class InscriptionServlet extends HttpServlet {
 
         boolean valide = true;
 
-        //test de validation 
+        //test de validation du formulaire
+        
         // compilation de la regex
         Pattern regexTel = Pattern.compile("0[0-9]{9}");
         // création d'un moteur de recherche
         Matcher matcherTel = regexTel.matcher(tel);
         // lancement de la recherche de toutes les occurrences
         boolean booleanTel = matcherTel.matches();
+        if(tel.equals("")){
+            booleanTel = true;
+        }
 
-        // compilation de la regex
         Pattern regexEmail = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
-        // création d'un moteur de recherche
         Matcher matcherEmail = regexEmail.matcher(email);
-        // lancement de la recherche de toutes les occurrences
         boolean booleanEmail = matcherEmail.matches();
 
-        // compilation de la regex
-        Pattern regexPrenom = Pattern.compile("^ *$");
-        // création d'un moteur de recherche
-        Matcher matcherPrenom = regexPrenom.matcher(prenom);
-        // lancement de la recherche de toutes les occurrences
+        Pattern regexChampsVide = Pattern.compile("^ *$");
+        
+        Matcher matcherPrenom = regexChampsVide.matcher(prenom);
         boolean booleanPrenom = matcherPrenom.matches();
 
-        // compilation de la regex
-        Pattern regexNom = Pattern.compile("^ *$");
-        // création d'un moteur de recherche
-        Matcher matcherNom = regexNom.matcher(nom);
-        // lancement de la recherche de toutes les occurrences
+        Matcher matcherNom = regexChampsVide.matcher(nom);
         boolean booleanNom = matcherNom.matches();
 
-        // compilation de la regex
-        Pattern regexMdp = Pattern.compile("^ *$");
-        // création d'un moteur de recherche
-        Matcher matcherMdp = regexMdp.matcher(pwd);
-        // lancement de la recherche de toutes les occurrences
+        Matcher matcherMdp = regexChampsVide.matcher(pwd);
         boolean booleanMdp = matcherMdp.matches();
 
         if (!booleanEmail) {

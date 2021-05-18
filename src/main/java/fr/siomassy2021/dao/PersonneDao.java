@@ -44,7 +44,7 @@ public class PersonneDao {
     public void insert(Personne personne) throws SQLException {
 
         Connection connection = Database.getConnection();
-        String insert = "INSERT INTO personne (prenom, nom, email,pwd,tel) VALUES ( ?, ?, ?, ?,?);";
+        String insert = "INSERT INTO personne (prenom, nom, email,pwd,tel, inscrit_a) VALUES ( ?, ?, ?, ?,?, NOW());";
         //compile la requete
         PreparedStatement stmt = connection.prepareStatement(insert);
         
@@ -53,7 +53,7 @@ public class PersonneDao {
         stmt.setString(3, personne.getEmail());
         stmt.setString(4,personne.getPwd());
         stmt.setString(5,personne.getTel());
-        
+    
         stmt.execute();
 
     }
