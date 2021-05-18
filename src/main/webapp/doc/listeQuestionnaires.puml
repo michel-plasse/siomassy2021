@@ -22,12 +22,10 @@ le chemin (utl) /mescanaux.
 => commit
 
 2e étape
-Mettre des canaux en dur dans le contrôleur,
-et les afficher dans la JSP.
+Creer des questionnaires en ajoutant des questions et des reponses
 => commit
 
 3e étape
-Appel de la Dao, qui construit la liste en dur
-Le memberId est aussi mis en dur à 1
+Enregistrer le Questionnaire dans la base de donnees
 => commit
 '/
