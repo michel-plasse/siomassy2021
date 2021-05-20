@@ -6,8 +6,8 @@
 package fr.siomassy2021.controller;
 
 import fr.siomassy2021.dao.EntrainementDao;
-import fr.siomassy2021.model.Entrainement;
 import fr.siomassy2021.model.EntrainementEtudiant;
+import fr.siomassy2021.model.Personne;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -27,8 +27,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ListerEntrainementEtudiantServlet extends HttpServlet {
 
-  private final String VUE = "WEB-INF/entrainementsEtudiant.jsp";
-  private final String VUE_ERREUR = "WEB-INF/erreur.jsp";
+  private final String VUE = "/WEB-INF/entrainementsEtudiant.jsp";
+  private final String VUE_ERREUR = "/WEB-INF/erreur.jsp";
 
   /**
    * Handles the HTTP <code>GET</code> method.
@@ -44,16 +44,23 @@ public class ListerEntrainementEtudiantServlet extends HttpServlet {
     EntrainementDao entrainementDao = new EntrainementDao();
     List<EntrainementEtudiant> entrainements = null;
     String vue = VUE;
-    try {
-      entrainements = EntrainementDao.getByIdEtudiant(5);
-      System.out.println(entrainements.size());
-      request.setAttribute("entrainements", entrainements);
-    } catch (SQLException ex) {
-      Logger.getLogger(ListerEntrainementEtudiantServlet.class.getName()).log(Level.SEVERE, null, ex);
-      vue = VUE_ERREUR;
-      request.setAttribute("message", ex.getMessage());
-    }    
-    request.getRequestDispatcher(VUE).forward(request, response);
+    Personne user = (Personne) request.getSession(true).getAttribute("user");
+    if (user != null) {
+      try {
+        entrainements = EntrainementDao.getByIdEtudiant(user.getId());
+        System.out.println(entrainements.size());
+        request.setAttribute("entrainements", entrainements);
+      } catch (SQLException ex) {
+        Logger.getLogger(ListerEntrainementEtudiantServlet.class.getName()).log(Level.SEVERE, null, ex);
+        vue = VUE_ERREUR;
+        request.setAttribute("message", ex.getMessage());
+      }
+      request.getRequestDispatcher(VUE).forward(request, response);
+    } else {
+      request.getSession(true).setAttribute("askedUrlBeforeConnection", request.getRequestURI());
+      response.sendRedirect("connexion");
+    }
+
   }
 
   @Override

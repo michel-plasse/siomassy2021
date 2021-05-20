@@ -13,16 +13,6 @@ Dao -> SGBD: INSERT...
 SGBD -> Dao: ok ou pas
 Dao -> Controleur: ok ou pas
 Controleur -> Navigateur: url=="entrainementEtudiant?idEntrainement=..."\nresponse.sendRedirect(url)
-== affichage du questionnaire ==
-Navigateur -> Controleur: GET /entrainementEtudiant_n?idEntrainement=...
-Controleur -> Controleur: verifie que idEntrainement est entier
-Controleur -> Controleur: recupere le user de la session
-Controleur -> Dao: EntrainementDao.\ngetByIdEntrainementIdEtudiant\n(idEntrainement,idEtudiant)
-Dao -> SGBD: SELECT...
-SGBD -> Dao: 
-Dao -> Controleur: EntrainementEtudiant
-Controleur -> Vue: entrainementEtudiant.jsp
-Vue -> Navigateur: liste questions/reponses
 
 @enduml
 
