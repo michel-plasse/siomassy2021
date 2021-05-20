@@ -5,14 +5,17 @@
  */
 package fr.siomassy2021.model;
 
+import java.util.HashMap;
+
 /**
  *
- * @author Lenovo
+ * @author Karolawski
  */
-public class EntrainementEtudiant {
+public class EntrainementEtudiant extends Entrainement {
   
   private int idEntrainementEtudiant;
   private Personne etudiant;
+  private HashMap<String,Integer> entrainements;
 
   public EntrainementEtudiant(int idEntrainementEtudiant, Personne etudiant) {
     this.idEntrainementEtudiant = idEntrainementEtudiant;
@@ -22,6 +25,11 @@ public class EntrainementEtudiant {
   public EntrainementEtudiant() {
   }
 
+  public HashMap<String, Integer> getEntrainements() {
+    return entrainements;
+  }
+  
+
   public int getIdEntrainementEtudiant() {
     return idEntrainementEtudiant;
   }
@@ -30,6 +38,11 @@ public class EntrainementEtudiant {
     return etudiant;
   }
 
+  public void setEntrainements(HashMap<String, Integer> entrainements) {
+    this.entrainements = entrainements;
+  }
+
+  
   public void setIdEntrainementEtudiant(int idEntrainementEtudiant) {
     this.idEntrainementEtudiant = idEntrainementEtudiant;
   }

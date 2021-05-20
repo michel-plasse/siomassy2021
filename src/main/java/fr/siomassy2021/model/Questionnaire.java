@@ -5,6 +5,8 @@
  */
 package fr.siomassy2021.model;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Lenovo
@@ -14,11 +16,16 @@ public class Questionnaire {
   private int idQuestionnaire;
   private Personne createur;
   private String libelle;
+  private HashMap<String,Integer> questions;
 
   public Questionnaire(int idQuestionnaire, Personne createur, String libelle) {
     this.idQuestionnaire = idQuestionnaire;
     this.createur = createur;
     this.libelle = libelle;
+  }
+
+  public HashMap<String, Integer> getQuestions() {
+    return questions;
   }
 
   public Questionnaire() {
@@ -34,6 +41,10 @@ public class Questionnaire {
 
   public String getLibelle() {
     return libelle;
+  }
+
+  public void setQuestions(HashMap<String, Integer> questions) {
+    this.questions = questions;
   }
 
   public void setIdQuestionnaire(int idQuestionnaire) {

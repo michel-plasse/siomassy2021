@@ -23,7 +23,7 @@ SGBD -> Dao:
 Dao -> Controleur: EntrainementEtudiant
 Controleur -> Vue: entrainementEtudiant.jsp
 Vue -> Navigateur: liste questions/reponses
-== reponse a une question ==
+
 @enduml
 
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)

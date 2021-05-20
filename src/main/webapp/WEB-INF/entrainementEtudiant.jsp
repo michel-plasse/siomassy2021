@@ -13,5 +13,8 @@
   </head>
   <body>
     <h1>Entrainement étudiant</h1>
+    
+    (affiche l'entrainement choisi par l'étudiant)
+    
   </body>
 </html>

@@ -21,9 +21,14 @@ public class Entrainement {
     this.canal = canal;
   }
 
-  public Entrainement() {
+  public Entrainement(int idEntrainement) {
+     this.idEntrainement = idEntrainement;
   }
 
+  public Entrainement() {
+
+  }
+  
   public int getIdEntrainement() {
     return idEntrainement;
   }
