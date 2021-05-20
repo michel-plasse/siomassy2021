@@ -4,14 +4,16 @@
 participant Navigateur
 participant Vue
 
-Navigateur -> Controleur: GET /efgs?idcanal=...
-Controleur -> Controleur: verifie idCanal est entier
-Controleur -> Dao: CanalDao.getEFGSByIdCanal(getIdCanal())
-Dao -> SGBD: SELECT ...
-SGBD -> Dao: EFG trouvées 
-Dao -> Controleur: List<EFG>;
-Controleur -> Vue: EFGs.jsp
-Vue -> Navigateur: ListeEFGs
+Navigateur -> Controleur: GET /inscription
+Controleur -> Controleur: verifie que les données sont valides
+Controleur -> Dao: Personne p1 = new Personne(...) \n PersonneDao.insert(p1)
+Dao -> SGBD: INSERT ...
+SGBD -> Dao: Rien ou Erreur 
+Dao -> Controleur: Rien ou SQLException;
+Controleur -> Vue: messsage.jsp ou \n inscription.jsp si  erreur
+Vue -> Navigateur: Le message 
+
+
 @enduml
 
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)

@@ -56,7 +56,12 @@ body {
 }
 
 .erreur {
-  color: red;
+    background-color: rgba(219, 71, 71, 0.445);
+    color: rgb(117, 1, 1);
+    text-align: center;
+    margin-bottom: 20px;
+    margin: auto;
+    border-radius: 10px;
 }
 /* Horizontal flex container */
 .flexh {
@@ -78,3 +83,59 @@ td, th {
 a:link.lienPasSouligne {
   text-decoration: none;
 }
+
+/* Partie Anouar CSS Debut */
+p {
+    margin-top: 0px;
+  }
+   
+  fieldset {
+    margin-bottom: 15px;
+    padding: 10px;
+  }
+   
+  legend {
+    padding: 0px 3px;
+    font-weight: bold;
+    font-variant: small-caps;
+  }
+   
+  label {
+    width: 110px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px;
+  }
+   
+  em {
+    font-weight: bold;
+    font-style: normal;
+    color: #f00;
+  }
+   
+  input:focus {
+    background: #eaeaea;
+  }
+   
+  input, textarea {
+    width: 249px;
+  }
+   
+  textarea {
+    height: 100px;
+  }
+   
+  select {
+    width: 254px;
+  }
+   
+  input[type=checkbox] {
+    width: 10px;
+  }
+   
+  input[type=submit] {
+    width: 150px;
+    padding: 10px;
+  }
+
+/* Partie Anouar CSS Fin */

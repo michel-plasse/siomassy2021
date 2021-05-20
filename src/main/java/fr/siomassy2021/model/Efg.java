@@ -12,6 +12,8 @@ import java.sql.Date;
  * @author Administrateur
  */
 public class Efg {
+
+    private int idEFG;
     private String intitule;
     private int idCreateur;
     private int idCanal;
@@ -25,8 +27,11 @@ public class Efg {
     public Efg() {
     }
 
-    public Efg(String intitule) {
+    public Efg(int idEFG, String intitule, int idCreateur, int idCanal) {
+        this.idEFG = idEFG;
         this.intitule = intitule;
+        this.idCreateur = idCreateur;
+        this.idCanal = idCanal;
     }
 
     public String getIntitule() {
@@ -52,7 +57,14 @@ public class Efg {
     public void setIdCanal(int idCanal) {
         this.idCanal = idCanal;
     }
-    
+
+    public int getIdEFG() {
+        return idEFG;
+    }
+
+    public void setIdEFG(int idEFG) {
+        this.idEFG = idEFG;
+    }
     
     
 }
