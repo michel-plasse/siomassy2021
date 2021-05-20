@@ -30,6 +30,7 @@
           </form>
         </c:if>
         <c:if test="${sessionScope['user'] == null}">
+          <a href="${context}/inscription">Inscription</a>
           <a href="${context}/connexion">Connexion</a>
         </c:if>
         ${applicationScope["nbUtilisateurs"]} utilisateurs

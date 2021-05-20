@@ -41,7 +41,7 @@ public class InscriptionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String vue = "WEB-INF/connexion.jsp";
+        String vue = "connexion";
         String prenom = request.getParameter("prenom");
         String nom = request.getParameter("nom");
         String email = request.getParameter("email");
@@ -120,7 +120,12 @@ public class InscriptionServlet extends HttpServlet {
         else{
             vue = VUE_ERREUR;
         }
-        request.getRequestDispatcher(vue).forward(request, response);
-
+        // redirection
+        if(vue.equals("connexion")){
+            response.sendRedirect(vue);
+        }
+        else{
+             request.getRequestDispatcher(vue).forward(request, response);
+        }
     }
 }
