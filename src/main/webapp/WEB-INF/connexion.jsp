@@ -3,6 +3,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <p:header title="Connexion"/>
 <h1>Connexion</h1>
+<h3 class="success">${messageSuccess}</h3>
     <form method="POST">
       <c:if test="${sessionScope['user'] == null}">
         Login :

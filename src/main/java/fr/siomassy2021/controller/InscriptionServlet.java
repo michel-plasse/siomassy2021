@@ -29,20 +29,19 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "InscriptionServlet", urlPatterns = {"/inscription"})
 public class InscriptionServlet extends HttpServlet {
 
-    final String VUE = "WEB-INF/inscription.jsp";
-    private final String VUE_ERREUR = "WEB-INF/erreur.jsp";
+    private final String VUE_ERREUR = "WEB-INF/inscription.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher(VUE).forward(request, response);
+        request.getRequestDispatcher("WEB-INF/inscription.jsp").forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String vue = VUE;
+        String vue = "WEB-INF/connexion.jsp";
         String prenom = request.getParameter("prenom");
         String nom = request.getParameter("nom");
         String email = request.getParameter("email");
@@ -109,13 +108,17 @@ public class InscriptionServlet extends HttpServlet {
             } catch (SQLException ex) {
                 if (ex.getErrorCode() == 1062) {
                     request.setAttribute("message", "Cet email existe déjà !");
+                    vue = VUE_ERREUR;
                 } else {
                     request.setAttribute("message", "Problème interne !");
+                    vue = VUE_ERREUR;
                 }
                 Logger.getLogger(InscriptionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            vue = "WEB-INF/connexion.jsp";
-
+            request.setAttribute("messageSuccess", "Votre inscription est validé ! Vous pouvez vous connecter.");
+        }
+        else{
+            vue = VUE_ERREUR;
         }
         request.getRequestDispatcher(vue).forward(request, response);
 

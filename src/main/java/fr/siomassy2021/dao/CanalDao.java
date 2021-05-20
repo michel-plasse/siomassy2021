@@ -17,7 +17,28 @@ import java.util.List;
 public class CanalDao {
 
     private static int canal;
-
+    
+    public static void ajouterMembreCanal(int idCanal, int idPersonne) throws SQLException{
+        Connection connection = Database.getConnection();
+        String sql = "INSERT into membre_canal (id_canal, id_personne, ajoute_a) values (?,?, now())";
+        PreparedStatement stmt = connection.prepareCall(sql);
+        stmt.setInt(1, idCanal);
+        stmt.setInt(2, idPersonne);
+        stmt.execute();
+        System.out.println("idCanal " + idCanal + " idPersonne " + idPersonne);
+    }
+    
+    public static int getById(int idCanal) throws SQLException {
+        int result = 0;
+        Connection connection = Database.getConnection();
+        String sql = "SELECT id_canal FROM canal WHERE id_canal = " + idCanal;
+        PreparedStatement stmt = connection.prepareCall(sql);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            result = idCanal;
+        }
+        return result;
+    }
     public static List<Canal> getByMemberId(int memberId) {
         // Le résultat est toujours appelé result
         List<Canal> result = new ArrayList<Canal>();

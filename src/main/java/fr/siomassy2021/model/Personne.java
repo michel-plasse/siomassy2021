@@ -45,6 +45,10 @@ public class Personne {
     this.id_groupe = id_groupe;
   }
   
+  public Personne() {
+      
+  }
+  
   public int getIdGroupe() {
       return id_groupe;
   }
