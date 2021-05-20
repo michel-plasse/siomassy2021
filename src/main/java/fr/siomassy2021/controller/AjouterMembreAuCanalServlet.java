@@ -24,23 +24,27 @@ import javax.servlet.http.HttpServletResponse;
  * @author ben
  */
 @WebServlet(name = "AjouterMembreAuCanal", urlPatterns = {"/AjouterMembreAuCanal"})
-public class AjouterMembreAuCanal extends HttpServlet {
+public class AjouterMembreAuCanalServlet extends HttpServlet {
 
     private final String VUE= "/WEB-INF/ajouterParticipantCanal.jsp";
+    private final String VUE_ERREUR= "/WEB-INF/erreur.jsp";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int idCanal = 0;
+        String vue = VUE;
         try {
             idCanal = Integer.parseInt(request.getParameter("idCanal"));
+            idCanal = CanalDao.getById(idCanal);
         }
         catch(NumberFormatException ex) {
-            System.err.println("Canal n'est pas un entier");
+            request.setAttribute("message", "idCanal n'est pas un entier");
+            vue = VUE_ERREUR;
         }
-        try {
-            idCanal = CanalDao.getById(idCanal);
-        } catch (SQLException ex) {
-            Logger.getLogger(AjouterMembreAuCanal.class.getName()).log(Level.SEVERE, null, ex);
+         catch (SQLException ex) {
+            Logger.getLogger(AjouterMembreAuCanalServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("message", ex.getMessage());
+            vue = VUE_ERREUR;
         }
         request.setAttribute("idCanal", idCanal);
         request.getRequestDispatcher(VUE).forward(request, response);
@@ -56,24 +60,20 @@ public class AjouterMembreAuCanal extends HttpServlet {
         Personne p = new Personne();
         try {
             idCanal = Integer.parseInt(request.getParameter("idCanal"));
+            email = request.getParameter("email");
+            p = PersonneDao.getByEmail(email);
+            idPersonne = p.getId();
+            CanalDao.ajouterMembreCanal(idCanal, idPersonne);
         } 
         catch (NumberFormatException e) {
             System.out.println("idCanal n'est pas un entier");
-        }
-        email = request.getParameter("email");
-        try {
-            p = PersonneDao.getByEmail(email);
+            request.setAttribute("message", "idCanal n'est ps un entier");
         } 
         catch (SQLException ex) {
-            Logger.getLogger(AjouterMembreAuCanal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AjouterMembreAuCanalServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("message", ex.getMessage());
         }
-        idPersonne = p.getId();
-        try {
-            CanalDao.ajouterMembreCanal(idCanal, idPersonne);
-        } 
-        catch (Exception e) {
-            
-        }
+
   }
     
     @Override

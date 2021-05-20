@@ -27,7 +27,7 @@ import java.util.logging.Logger;
  * @author ben
  */
 @WebServlet(name = "listerGroupesEfg", urlPatterns = {"/listerGroupesEfg"})
-public class listerGroupesEfg extends HttpServlet {
+public class listerGroupesEfgServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,21 +40,18 @@ public class listerGroupesEfg extends HttpServlet {
      */
     private final String VUE= "/WEB-INF/listeGroupesEfg.jsp";
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         int idEfg = 1;
         List<Groupe> listeGroupesEfg = new ArrayList<Groupe>();
         try {
             listeGroupesEfg = GroupesEfg.getMembresByIdEfg(idEfg);
         } catch (SQLException ex) {
-            Logger.getLogger(listerGroupesEfg.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(listerGroupesEfgServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("message", ex.getMessage());
         }
         request.setAttribute("listeGroupesEfg", listeGroupesEfg);
         request.setAttribute("efg", idEfg);
-        try {
-            request.getRequestDispatcher(VUE).forward(request, response);
-        } catch (IOException ex) {
-            Logger.getLogger(listerGroupesEfg.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        request.getRequestDispatcher(VUE).forward(request, response);
     }// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">ing containing servlet description
     @Override
     public String getServletInfo() {
