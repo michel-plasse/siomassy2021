@@ -27,41 +27,38 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ListerEFGServlet", urlPatterns = {"/efgs"})
 public class ListerEFGServlet extends HttpServlet {
-    
+
     private final String VUE = "WEB-INF/EFGs.jsp";
-    private final String VUE_ERREUR ="WEB-INF/erreur.jsp";
-    
-    List<Efg> listeEFG;
-    int idCanal;
+    private final String VUE_ERREUR = "WEB-INF/erreur.jsp";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        List<Efg> listeEFG;
+        int idCanal;
+        String vue = VUE;
+
         try {
             idCanal = Integer.parseInt(request.getParameter("idCanal"));
-        }
-        catch(NumberFormatException ex) {
-            System.err.println("Canal n'est pas un entier");
-        }
-        
-        CanalDao dao = new CanalDao();    
-        String vue = VUE;
-        try {
+            CanalDao dao = new CanalDao();
             listeEFG = dao.getEFGSByIdCanal(idCanal);
             request.setAttribute("EFGs", listeEFG);
+        } catch (NumberFormatException ex) {
+            request.setAttribute("message","idCanal n'est pas un entier");
+            vue = VUE_ERREUR;
         } catch (SQLException ex) {
             Logger.getLogger(ListerEFGServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("message", ex.getMessage());
             vue = VUE_ERREUR;
         }
+
         request.getRequestDispatcher(vue).forward(request, response);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
     @Override
