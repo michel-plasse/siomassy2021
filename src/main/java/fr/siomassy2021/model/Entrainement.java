@@ -5,6 +5,8 @@
  */
 package fr.siomassy2021.model;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Karolawski
@@ -21,14 +23,9 @@ public class Entrainement {
     this.canal = canal;
   }
 
-  public Entrainement(int idEntrainement) {
-     this.idEntrainement = idEntrainement;
-  }
-
   public Entrainement() {
-
   }
-  
+
   public int getIdEntrainement() {
     return idEntrainement;
   }
@@ -52,12 +49,8 @@ public class Entrainement {
   public void setCanal(Canal canal) {
     this.canal = canal;
   }
-
-  @Override
-  public String toString() {
-    return "Entrainement{" + "idEntrainement=" + idEntrainement + ", questionnaire=" + questionnaire + ", canal=" + canal + '}';
-  }
-
+  
+ 
   
 
   

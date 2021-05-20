@@ -23,46 +23,41 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Karolawski
  */
-@WebServlet(name = "ListerEntrainementEtudiantServlet", urlPatterns = {"/ListerEntrainementEtudiant"})
+@WebServlet(name = "ListerEntrainementEtudiantServlet", urlPatterns = {"/mesEntrainements"})
 
 public class ListerEntrainementEtudiantServlet extends HttpServlet {
-  
-    private final String VUE = "WEB-INF/ListerEntrainementEtudiant.jsp";
-   
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-        EntrainementDao entrainementDao = new EntrainementDao();
-        List<EntrainementEtudiant> entrainements = null;
-        try {
-            entrainements = EntrainementDao.getByIdEntrainement(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(ListerEntrainementEtudiantServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        request.setAttribute("entrainement", entrainements);
-     
-        request.getRequestDispatcher(VUE).forward(request, response);
-    }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
+  private final String VUE = "WEB-INF/entrainementsEtudiant.jsp";
+  private final String VUE_ERREUR = "WEB-INF/erreur.jsp";
+
+  /**
+   * Handles the HTTP <code>GET</code> method.
+   *
+   * @param request servlet request
+   * @param response servlet response
+   * @throws ServletException if a servlet-specific error occurs
+   * @throws IOException if an I/O error occurs
+   */
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    EntrainementDao entrainementDao = new EntrainementDao();
+    List<EntrainementEtudiant> entrainements = null;
+    String vue = VUE;
+    try {
+      entrainements = EntrainementDao.getByIdEtudiant(5);
+      System.out.println(entrainements.size());
+      request.setAttribute("entrainements", entrainements);
+    } catch (SQLException ex) {
+      Logger.getLogger(ListerEntrainementEtudiantServlet.class.getName()).log(Level.SEVERE, null, ex);
+      vue = VUE_ERREUR;
+      request.setAttribute("message", ex.getMessage());
+    }    
+    request.getRequestDispatcher(VUE).forward(request, response);
+  }
+
+  @Override
+  public String getServletInfo() {
+    return "Short description";
+  }
 }
-
-
-
-
-
-
-
-
-

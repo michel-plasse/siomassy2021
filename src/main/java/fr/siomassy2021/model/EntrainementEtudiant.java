@@ -11,57 +11,51 @@ import java.util.HashMap;
  *
  * @author Karolawski
  */
-public class EntrainementEtudiant extends Entrainement {
+public class EntrainementEtudiant {
   
-  private int idEntrainementEtudiant;
-  private Personne etudiant;
-  private HashMap<String,Integer> entrainements;
+  private int idEntrainement;
+  private int idEtudiant;
+  private String libelle;
 
-  public EntrainementEtudiant(int idEntrainementEtudiant, Personne etudiant) {
-    this.idEntrainementEtudiant = idEntrainementEtudiant;
-    this.etudiant = etudiant;
+  public EntrainementEtudiant(int idEntrainementEtudiant, int idEtudiant, String libelle) {
+    this.idEntrainement = idEntrainementEtudiant;
+    this.idEtudiant = idEtudiant;
+    this.libelle = libelle;
   }
 
-  public EntrainementEtudiant() {
+  public EntrainementEtudiant(int idEntrainement, Canal canal) {
   }
+
+  public int getIdEntrainement() {
+    return idEntrainement;
+  }
+
+  public int getIdEtudiant() {
+    return idEtudiant;
+  }
+
+  public String getLibelle() {
+    return libelle;
+  }
+
+  public void setIdEntrainement(int idEntrainement) {
+    this.idEntrainement = idEntrainement;
+  }
+
+  public void setIdEtudiant(int idEtudiant) {
+    this.idEtudiant = idEtudiant;
+  }
+
+  public void setLibelle(String libelle) {
+    this.libelle = libelle;
+  }
+
   
-   public EntrainementEtudiant(int idEntrainementEtudiant) {
-         this.idEntrainementEtudiant = idEntrainementEtudiant;
-
-  }
-
-  public HashMap<String, Integer> getEntrainements() {
-    return entrainements;
-  }
   
 
-  public int getIdEntrainementEtudiant() {
-    return idEntrainementEtudiant;
-  }
 
-  public Personne getEtudiant() {
-    return etudiant;
-  }
-
-  public void setEntrainements(HashMap<String, Integer> entrainements) {
-    this.entrainements = entrainements;
-  }
 
   
-  public void setIdEntrainementEtudiant(int idEntrainementEtudiant) {
-    this.idEntrainementEtudiant = idEntrainementEtudiant;
-  }
-
-  public void setEtudiant(Personne etudiant) {
-    this.etudiant = etudiant;
-  }
-
-  @Override
-  public String toString() {
-    return "EntrainementEtudiant{" + "idEntrainementEtudiant=" + idEntrainementEtudiant + ", etudiant=" + etudiant + '}';
-  }
-
-
   
   
   

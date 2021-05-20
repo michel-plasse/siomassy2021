@@ -5,13 +5,13 @@
 participant Navigateur
 participant Vue
 
-Navigateur -> Controleur: GET /entrainement
+Navigateur -> Controleur: GET /mesEntrainements
 Controleur -> Controleur: recupere le user de la session
 Controleur -> Dao: EntrainementDao.\ngetByIdEntrainement(idEntrainement)
 Dao -> SGBD: SELECT ...
 SGBD ->Dao: entrainements trouves
 Dao -> Controleur: List<Entrainement> entrainements
-Controleur -> Vue: listerEntrainementEtudiant.jsp
+Controleur -> Vue: entrainementsEtudiant.jsp
 Vue -> Navigateur: html
 @enduml
 
