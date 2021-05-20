@@ -28,6 +28,15 @@ public class Personne {
     this.tel = tel;
     this.pwd = pwd;
   }
+
+    public Personne(String prenom, String nom, String email, String tel, String pwd) {
+        this.prenom = prenom;
+        this.nom = nom;
+        this.email = email;
+        this.tel = tel;
+        this.pwd = pwd;
+    }
+
   
   public Personne(int id, String prenom, String nom, int id_groupe) {
     this.id = id;

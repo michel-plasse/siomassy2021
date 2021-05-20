@@ -1,0 +1,34 @@
+@startuml
+' par défaut, les couches sont disposées dans l'ordre d'apparition
+' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
+participant Navigateur
+participant Vue
+
+Navigateur -> Controleur: GET /creerQuestionnaire
+Controleur -> Controleur: recupere le user de la session
+Controleur -> Dao: creerQuestionnaireDao.\ngetByIdFormateur(idformateur)
+Dao -> SGBD: SELECT ...
+SGBD ->Dao: formulaire questions reponses
+Dao -> Controleur: formulaire ajouter et valider
+Controleur -> Vue: creerQuestionnaire.jsp
+Controleur -> Vue: formulaire ajoute questions et ajoute/choisit réponses et valide
+Vue -> Navigateur: html
+@enduml
+
+/' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
+1ere étape
+Créer le contrôleur et une vue minimale, et tester
+Pour cela, créer une servlet creerQuestionnaireServlet dans fr.siomassy2021.controller, avec
+le chemin (utl).
+=> commit
+
+2e étape
+Creer un questionnaire,ajouter des questions et des reponses et choisir la reponse qui correspond
+et l'afficher dans la JSP.
+=> commit
+
+3e étape
+Appel de la Dao, qui contient le formulaire
+
+=> commit
+'/

@@ -1,15 +1,18 @@
 package fr.siomassy2021.dao;
 
 import fr.siomassy2021.model.Canal;
+import fr.siomassy2021.model.Efg;
 import fr.siomassy2021.model.Evaluation;
 import fr.siomassy2021.model.Question;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 
 public class CanalDao {
 
@@ -74,4 +77,29 @@ public class CanalDao {
         result.add(new Question("Combien de temps voulez-vous pour ce TP ?", 0, reponses));
         return result;
     }
+
+    public static List<Efg> getEFGSByIdCanal(int idcanal) throws SQLException {
+        List<Efg> liste = new ArrayList<>();
+        Connection connection = Database.getConnection();
+
+        Statement canal1 = connection.createStatement();
+
+        String requete = "select * from efg  where id_canal = '" + idcanal + "';";
+
+        ResultSet res = canal1.executeQuery(requete);
+
+        while (res.next()) {
+            int idEfg = res.getInt("id_efg");
+            String intitule = res.getString("intitule");
+            int idcreateur = res.getInt("id_createur");
+            int id_canal = res.getInt("id_canal");
+
+            Efg e1 = new Efg(idEfg, intitule, idcreateur, idcanal); //Créer une instance de client pour chaque client dans la base
+
+            liste.add(e1); // on ajoute l'instance 
+
+        }
+        return liste;
+    }
+
 }
