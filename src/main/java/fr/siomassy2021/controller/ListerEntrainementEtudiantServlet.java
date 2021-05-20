@@ -6,6 +6,7 @@
 package fr.siomassy2021.controller;
 
 import fr.siomassy2021.dao.EntrainementDao;
+import fr.siomassy2021.model.Entrainement;
 import fr.siomassy2021.model.EntrainementEtudiant;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -42,7 +43,7 @@ public class ListerEntrainementEtudiantServlet extends HttpServlet {
         EntrainementDao entrainementDao = new EntrainementDao();
         List<EntrainementEtudiant> entrainements = null;
         try {
-            entrainements = EntrainementDao.getByIdEntrainement(int idEntrainement);
+            entrainements = EntrainementDao.getByIdEntrainement(1);
         } catch (SQLException ex) {
             Logger.getLogger(ListerEntrainementEtudiantServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

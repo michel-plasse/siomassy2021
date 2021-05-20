@@ -24,6 +24,11 @@ public class EntrainementEtudiant extends Entrainement {
 
   public EntrainementEtudiant() {
   }
+  
+   public EntrainementEtudiant(int idEntrainementEtudiant) {
+         this.idEntrainementEtudiant = idEntrainementEtudiant;
+
+  }
 
   public HashMap<String, Integer> getEntrainements() {
     return entrainements;

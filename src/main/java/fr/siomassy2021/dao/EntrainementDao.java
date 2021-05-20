@@ -3,6 +3,7 @@ package fr.siomassy2021.dao;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.String;
 import fr.siomassy2021.model.Canal;
 import fr.siomassy2021.model.Entrainement;
+import fr.siomassy2021.model.EntrainementEtudiant;
 import fr.siomassy2021.model.Evaluation;
 import fr.siomassy2021.model.Questionnaire;
 import java.sql.Connection;
@@ -27,15 +28,15 @@ public class EntrainementDao {
    * @return
    */
   
-    public static List<Entrainement> getByIdEntrainement(int idEntrainement) throws SQLException {
-      List<Entrainement> result = new ArrayList<Entrainement>();
+    public static List<EntrainementEtudiant> getByIdEntrainement(int idEntrainement) throws SQLException {
+      List<EntrainementEtudiant> result = new ArrayList<EntrainementEtudiant>();
       Connection connection = Database.getConnection();
       String sql = "SELECT * FROM entrainement WHERE id_entrainement=?";
       PreparedStatement stmt = connection.prepareCall(sql);
       stmt.setInt(1, idEntrainement);
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
-        result.add(new Entrainement(
+        result.add(new EntrainementEtudiant(
            rs.getInt("id_entrainement"))); 
     }
     return result;

@@ -13,20 +13,14 @@
         <title>listerEntrainementEtudiant</title>
     </head>
     <body>
-        <h1>Liste des entrainements étudiant</h1>     
+        <h1>Liste les entrainements étudiant</h1>     
         <table id="entrainement">
           <tr>
-            <th>Intitulé</th>
-            <th>Passé à</th>
-            <th>Durée</th>
-            <th>Est corrigée</th>
+            <th>Numéro d'entrainement</th>
           </tr>
-           <c:forEach items="${evaluations}" var="evaluation">
+           <c:forEach items="${entrainements}" var="entrainement">
            <tr>
-            <td>${evaluation.intitule}</td>
-            <td>${evaluation.passeeA}</td>
-            <td>${evaluation.duree}</td>
-            <td>${evaluation.estCorrigee ? 'Oui' : 'Non'}</td>
+            <td>${entrainement.idEntrainementEtudiant}</td>
           </tr>
            </c:forEach>
         </table>

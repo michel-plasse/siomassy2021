@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author Lenovo
+ * @author Karolawski
  */
 public class Questionnaire {
   
@@ -24,6 +24,10 @@ public class Questionnaire {
     this.libelle = libelle;
   }
 
+  public Questionnaire(int idQuestionnaire) {
+    this.idQuestionnaire = idQuestionnaire;
+  }
+  
   public HashMap<String, Integer> getQuestions() {
     return questions;
   }
