@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author michel
  */
-@WebServlet(name = "MesCanauxServlet", urlPatterns = {"/canaux"})
+@WebServlet(name = "CanauxServlet", urlPatterns = {"/canaux"})
 public class CanauxServlet extends HttpServlet {
   private String VUE_CANAUX = "WEB-INF/canaux.jsp";
 
