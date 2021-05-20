@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "InscriptionServlet", urlPatterns = {"/inscription"})
 public class InscriptionServlet extends HttpServlet {
 
-    private final String VUE_ERREUR = "WEB-INF/inscription.jsp";
+    private final String VUE = "WEB-INF/inscription.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,7 +41,8 @@ public class InscriptionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String vue = "connexion";
+        String vue = VUE;
+        boolean valideForm = true;
         String prenom = request.getParameter("prenom");
         String nom = request.getParameter("nom");
         String email = request.getParameter("email");
@@ -51,14 +52,13 @@ public class InscriptionServlet extends HttpServlet {
         boolean valide = true;
 
         //test de validation du formulaire
-        
         // compilation de la regex
         Pattern regexTel = Pattern.compile("0[0-9]{9}");
         // création d'un moteur de recherche
         Matcher matcherTel = regexTel.matcher(tel);
         // lancement de la recherche de toutes les occurrences
         boolean booleanTel = matcherTel.matches();
-        if(tel.equals("")){
+        if (tel.equals("")) {
             booleanTel = true;
         }
 
@@ -67,7 +67,7 @@ public class InscriptionServlet extends HttpServlet {
         boolean booleanEmail = matcherEmail.matches();
 
         Pattern regexChampsVide = Pattern.compile("^ *$");
-        
+
         Matcher matcherPrenom = regexChampsVide.matcher(prenom);
         boolean booleanPrenom = matcherPrenom.matches();
 
@@ -108,24 +108,21 @@ public class InscriptionServlet extends HttpServlet {
             } catch (SQLException ex) {
                 if (ex.getErrorCode() == 1062) {
                     request.setAttribute("message", "Cet email existe déjà !");
-                    vue = VUE_ERREUR;
+                    valideForm = false;
                 } else {
                     request.setAttribute("message", "Problème interne !");
-                    vue = VUE_ERREUR;
+                    valideForm = false;
                 }
                 Logger.getLogger(InscriptionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.setAttribute("messageSuccess", "Votre inscription est validé ! Vous pouvez vous connecter.");
-        }
-        else{
-            vue = VUE_ERREUR;
+
         }
         // redirection
-        if(vue.equals("connexion")){
-            response.sendRedirect(vue);
+        if (valideForm && valide) {
+            request.setAttribute("messageSuccess", "Votre inscription est validé ! Vous pouvez vous maintenant vous connecter en cliquant sur connexion.");
         }
-        else{
-             request.getRequestDispatcher(vue).forward(request, response);
-        }
+
+        request.getRequestDispatcher(vue).forward(request, response);
+
     }
 }
