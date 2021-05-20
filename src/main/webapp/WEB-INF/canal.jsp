@@ -7,4 +7,6 @@
 <!-- Ici, les liens vers vos différentes fonctionnalités -->
 <nav>
   <a href="efgs?idCanal=${idCanal}">EFGs</a>
+  <a href="questionnaires?idCanal=${idCanal}">Questionnaires</a>
+  <a href="questions?idCanal=${idCanal}">Questions</a>
 </nav>
