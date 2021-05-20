@@ -5,45 +5,57 @@
  */
 package fr.siomassy2021.model;
 
+import java.util.HashMap;
+
 /**
  *
- * @author Lenovo
+ * @author Karolawski
  */
 public class EntrainementEtudiant {
   
-  private int idEntrainementEtudiant;
-  private Personne etudiant;
+  private int idEntrainement;
+  private int idEtudiant;
+  private String libelle;
 
-  public EntrainementEtudiant(int idEntrainementEtudiant, Personne etudiant) {
-    this.idEntrainementEtudiant = idEntrainementEtudiant;
-    this.etudiant = etudiant;
+  public EntrainementEtudiant(int idEntrainementEtudiant, int idEtudiant, String libelle) {
+    this.idEntrainement = idEntrainementEtudiant;
+    this.idEtudiant = idEtudiant;
+    this.libelle = libelle;
   }
 
-  public EntrainementEtudiant() {
+  public EntrainementEtudiant(int idEntrainement, Canal canal) {
   }
 
-  public int getIdEntrainementEtudiant() {
-    return idEntrainementEtudiant;
+  public int getIdEntrainement() {
+    return idEntrainement;
   }
 
-  public Personne getEtudiant() {
-    return etudiant;
+  public int getIdEtudiant() {
+    return idEtudiant;
   }
 
-  public void setIdEntrainementEtudiant(int idEntrainementEtudiant) {
-    this.idEntrainementEtudiant = idEntrainementEtudiant;
+  public String getLibelle() {
+    return libelle;
   }
 
-  public void setEtudiant(Personne etudiant) {
-    this.etudiant = etudiant;
+  public void setIdEntrainement(int idEntrainement) {
+    this.idEntrainement = idEntrainement;
   }
 
-  @Override
-  public String toString() {
-    return "EntrainementEtudiant{" + "idEntrainementEtudiant=" + idEntrainementEtudiant + ", etudiant=" + etudiant + '}';
+  public void setIdEtudiant(int idEtudiant) {
+    this.idEtudiant = idEtudiant;
   }
 
+  public void setLibelle(String libelle) {
+    this.libelle = libelle;
+  }
 
+  
+  
+
+
+
+  
   
   
   

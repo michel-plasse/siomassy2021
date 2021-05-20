@@ -1,19 +1,18 @@
+'Karolawski
 @startuml
 ' par défaut, les couches sont disposées dans l'ordre d'apparition
 ' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
 participant Navigateur
 participant Vue
 
-== demarrage de l entrainement ==
-Navigateur -> Controleur: POST entrainement?idEntrainement=...
-Controleur -> Controleur: verifie que idEntrainement est entier 
-Controleur -> Controleur: recupere le user de la session 
-Controleur -> Dao: EntrainementDao.\ndemarrerEntrainementEtudiant\n(idEntrainement,idEtudiant)
-Dao -> SGBD: INSERT...
-SGBD -> Dao: ok ou pas
-Dao -> Controleur: ok ou pas
-Controleur -> Navigateur: url=="entrainementEtudiant?idEntrainement=..."\nresponse.sendRedirect(url)
-
+Navigateur -> Controleur: GET /mesEntrainements
+Controleur -> Controleur: recupere le user de la session
+Controleur -> Dao: EntrainementDao.\ngetByIdEntrainement(idEntrainement)
+Dao -> SGBD: SELECT ...
+SGBD ->Dao: entrainements trouves
+Dao -> Controleur: List<Entrainement> entrainements
+Controleur -> Vue: entrainementsEtudiant.jsp
+Vue -> Navigateur: html
 @enduml
 
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
@@ -32,4 +31,3 @@ et les afficher dans la JSP.
 Appel de la Dao, qui construit la liste en dur
 Le memberId est aussi mis en dur à 1
 => commit
-'/

@@ -25,7 +25,7 @@
       <nav>
         <c:if test="${sessionScope['user'] != null}">
           <form action="${context}/connexion" method="post">
-            <button type="submit">Déconnecter ${sessionScope['user'].login}</button>
+            <button type="submit">Déconnecter ${sessionScope['user'].email}</button>
             <input type="hidden" name="action" value="deconnecter"/>
           </form>
         </c:if>
