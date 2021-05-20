@@ -32,14 +32,22 @@ public class ListerEFGServlet extends HttpServlet {
     private final String VUE_ERREUR ="WEB-INF/erreur.jsp";
     
     List<Efg> listeEFG;
+    int idCanal;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        try {
+            idCanal = Integer.parseInt(request.getParameter("idCanal"));
+        }
+        catch(NumberFormatException ex) {
+            System.err.println("Canal n'est pas un entier");
+        }
+        
         CanalDao dao = new CanalDao();    
         String vue = VUE;
         try {
-            listeEFG = dao.getEFGSByIdCanal(1);
+            listeEFG = dao.getEFGSByIdCanal(idCanal);
             request.setAttribute("EFGs", listeEFG);
         } catch (SQLException ex) {
             Logger.getLogger(ListerEFGServlet.class.getName()).log(Level.SEVERE, null, ex);

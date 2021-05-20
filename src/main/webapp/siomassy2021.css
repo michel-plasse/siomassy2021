@@ -145,5 +145,11 @@ p {
     width: 150px;
     padding: 10px;
   }
+  
+  .btn-efg{
+    background-color: rgb(47, 62, 192);
+    border-color: rgb(47, 62, 192);;
+    color: rgb(255, 255, 255);
+}
 
 /* Partie Anouar CSS Fin */

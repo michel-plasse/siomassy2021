@@ -9,10 +9,10 @@
 <p:header title="Erreur"/>
     <h1>Liste d'EFGs</h1>
 
-    <ol>
+    <ul>
         <c:forEach items="${EFGs}" var="efg">
-            <li>${efg.intitule}</li>
+            <li>${efg.intitule} : <a href="listerGroupesEfg?idEfg=${efg.idEFG}"><button type="button" class="btn-efg">Accéder au groupe de l'EFG</button></a></li>
             </c:forEach>
-    </ol>
+    </ul>
     </body>
 </html>
