@@ -18,9 +18,10 @@ import java.util.ArrayList;
  *
  * @author ben
  */
-public class GroupesEfg {
+public class GroupesEfgDao {
     public static List<Groupe> getMembresByIdEfg(int idEfg) throws SQLException {
         int idGroupe = 0;
+        Groupe g = null;
         List<Groupe> listeGroupesEfg = new ArrayList<Groupe>();
         Connection connection = Database.getConnection();
         String sql = "SELECT p.nom, p.prenom, mgr.id_personne, mgr.id_groupe, mgr.id_efg \n" +
@@ -31,15 +32,15 @@ public class GroupesEfg {
         PreparedStatement stmt = connection.prepareCall(sql);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            Personne p = new Personne(rs.getInt("id_personne"), rs.getString("prenom"), rs.getString("nom"), rs.getInt("id_groupe"));
-            if (rs.getInt("id_groupe") == idGroupe) {
-                listeGroupesEfg.get(idGroupe - 1).ajouterMembre(p);
-            }
-            else {
-                Groupe g = new Groupe(rs.getInt("id_groupe"), idEfg);
+            Personne p = new Personne(rs.getInt("id_personne"), rs.getString("prenom"), rs.getString("nom"));
+            if (rs.getInt("id_groupe") != idGroupe) {
+                g = new Groupe(rs.getInt("id_groupe"), idEfg);
                 g.ajouterMembre(p);
                 listeGroupesEfg.add(g);
-                idGroupe++;
+                idGroupe = rs.getInt("id_groupe");
+            }
+            else {
+                g.ajouterMembre(p);
             }
         }
         return listeGroupesEfg;

@@ -28,6 +28,7 @@ public class AjouterMembreAuCanalServlet extends HttpServlet {
 
     private final String VUE= "/WEB-INF/ajouterParticipantCanal.jsp";
     private final String VUE_ERREUR= "/WEB-INF/erreur.jsp";
+    private final String VUE_CANAUX="WEB-INF/canaux.jsp";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,16 +63,28 @@ public class AjouterMembreAuCanalServlet extends HttpServlet {
             idCanal = Integer.parseInt(request.getParameter("idCanal"));
             email = request.getParameter("email");
             p = PersonneDao.getByEmail(email);
+            if (p == null) {
+                request.setAttribute("message", "L'e-mail n'existe pas !");
+                request.getRequestDispatcher(VUE).forward(request, response);
+            }
             idPersonne = p.getId();
             CanalDao.ajouterMembreCanal(idCanal, idPersonne);
+            response.sendRedirect("canaux");
         } 
         catch (NumberFormatException e) {
             System.out.println("idCanal n'est pas un entier");
-            request.setAttribute("message", "idCanal n'est ps un entier");
+            request.setAttribute("message", "idCanal n'est pas un entier");
+            request.getRequestDispatcher(VUE_ERREUR).forward(request, response);
         } 
         catch (SQLException ex) {
-            Logger.getLogger(AjouterMembreAuCanalServlet.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("message", ex.getMessage());
+            if (ex.getErrorCode() == 1062) {
+                request.setAttribute("message", "Cet email existe déjà !");
+            }
+            else {
+                Logger.getLogger(AjouterMembreAuCanalServlet.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("message", ex.getMessage());
+            }
+            request.getRequestDispatcher(VUE).forward(request, response);
         }
 
   }

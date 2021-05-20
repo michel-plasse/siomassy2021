@@ -11,10 +11,10 @@
     </head>
     <body>
         <h1>Ajouter un membre au canal</h1>
-        
         <form method="post">
             Email : <input type="text" name="email">
             <input type="submit" value="Soumettre" />
         </form>
+        <div class="erreur">${message} </div>
     </body>
 </html>

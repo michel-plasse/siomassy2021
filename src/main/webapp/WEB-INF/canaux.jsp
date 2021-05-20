@@ -6,6 +6,6 @@
 <nav>
   <c:forEach items="${canaux}" var="canal">
     <a href="canal?idCanal=${canal.id}">${canal.nom}</a>
-    <a href="AjouterMembreAuCanal?idCanal=${canal.id}">Ajouter un membre au canal</a>
+    ${message}
   </c:forEach>
 </nav>

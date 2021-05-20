@@ -20,6 +20,7 @@
         <a href="${context}/.">Accueil</a>
         <a href="javascript: document.getElementById('resetDbForm').submit()">Réinitialiser
           la BD</a>
+        <a href="${context}/canaux">Canaux</a>
       </nav>
       <nav>
         <c:if test="${sessionScope['user'] != null}">

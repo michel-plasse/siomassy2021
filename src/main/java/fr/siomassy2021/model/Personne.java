@@ -38,11 +38,10 @@ public class Personne {
     }
 
   
-  public Personne(int id, String prenom, String nom, int id_groupe) {
+  public Personne(int id, String prenom, String nom) {
     this.id = id;
     this.prenom = prenom;
     this.nom = nom;
-    this.id_groupe = id_groupe;
   }
   
   public Personne() {

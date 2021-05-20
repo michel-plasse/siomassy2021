@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import fr.siomassy2021.dao.GroupesEfg;
+import fr.siomassy2021.dao.GroupesEfgDao;
 import fr.siomassy2021.dao.PersonneDao;
 import fr.siomassy2021.model.Groupe;
 import fr.siomassy2021.model.Personne;
@@ -39,19 +39,28 @@ public class listerGroupesEfgServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private final String VUE= "/WEB-INF/listeGroupesEfg.jsp";
+    private final String VUE_ERREUR= "/WEB-INF/erreur.jsp";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        int idEfg = 1;
+        int idEfg = 0;
+        String vue = VUE;
+        
         List<Groupe> listeGroupesEfg = new ArrayList<Groupe>();
         try {
-            listeGroupesEfg = GroupesEfg.getMembresByIdEfg(idEfg);
+            idEfg = Integer.parseInt(request.getParameter("idEfg"));
+            listeGroupesEfg = GroupesEfgDao.getMembresByIdEfg(idEfg);
+            request.setAttribute("listeGroupesEfg", listeGroupesEfg);
+            request.setAttribute("efg", idEfg);
         } catch (SQLException ex) {
             Logger.getLogger(listerGroupesEfgServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("message", ex.getMessage());
+            vue = VUE_ERREUR;
+        } catch (NumberFormatException ex) {
+            request.setAttribute("message","idCanal n'est pas un entier");
+            vue = VUE_ERREUR;
         }
-        request.setAttribute("listeGroupesEfg", listeGroupesEfg);
-        request.setAttribute("efg", idEfg);
-        request.getRequestDispatcher(VUE).forward(request, response);
+        
+        request.getRequestDispatcher(vue).forward(request, response);
     }// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">ing containing servlet description
     @Override
     public String getServletInfo() {
