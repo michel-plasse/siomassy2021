@@ -5,8 +5,14 @@
  */
 package fr.siomassy2021.controller;
 
+import fr.siomassy2021.dao.QuestionDao;
+import fr.siomassy2021.model.Question;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,20 +30,20 @@ private String VUE_REPONSES = "WEB-INF/repondreQuestion.jsp";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           request.getRequestDispatcher(VUE_REPONSES).forward(request, response); 
+           request.getRequestDispatcher(VUE_REPONSES).forward(request, response);
+           
+           int idcanal = 1;
+        //appel a la DAO
+        List<Question> questions;
+        questions = QuestionDao.getQuestionsByIdCanal(idcanal);
+        request.setAttribute("reponses", questions);
+        request.getRequestDispatcher(VUE_REPONSES).forward(request, response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse question)
             throws ServletException, IOException {
+         
          
     }
 

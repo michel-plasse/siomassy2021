@@ -4,14 +4,15 @@
 participant Navigateur
 participant Vue
 
-Navigateur -> Controleur: GET /questions?idCanal=...
-Controleur -> Controleur: verifie idCanal est entier
-Controleur -> Dao: CanalDao.getQuestionsByIdCanal(getIdCanal())
-Dao -> SGBD: SELECT ...
-SGBD -> Dao: questions trouvees 
-Dao -> Controleur: List<Questions>;
-Controleur -> Vue: questions.jsp
-Vue -> Navigateur: ListeQuestions
+Navigateur -> Controleur: POST /repondreQuestion\n avec idQuestion, reponse 
+Controleur -> Controleur: verifie idQuestion est entier\n reponse pas vide
+Controleur -> Controleur: id du user en session
+Controleur -> Dao: QuestionDao.insertReponse (idQuestion, idPersonne,reponse)
+Dao -> SGBD: INSERT INTO reponses_question...
+SGBD -> Dao:  ok ou exception
+Dao -> Controleur: ok ou exception
+Controleur -> Navigateur:  response.sendRedirect("reponsesQuestion")
+Vue -> Navigateur: reponsesQuestion
 @enduml
 
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)

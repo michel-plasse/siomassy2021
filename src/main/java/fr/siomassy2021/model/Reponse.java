@@ -16,6 +16,14 @@ public class Reponse {
         this.personne = personne;
     }
 
+    public Reponse(String question, String reponse, int personne, String prenom, String nom) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Reponse(String question, String reponse, int personne) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
      
 
      
