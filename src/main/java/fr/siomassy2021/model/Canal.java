@@ -2,7 +2,7 @@ package fr.siomassy2021.model;
 
 /**
  *
- * @author michel
+ * @author 
  */
 public class Canal {
   private int id;

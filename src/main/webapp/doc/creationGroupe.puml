@@ -9,7 +9,7 @@ Controleur -> Controleur: verifie que l'idEFG est entier
 Controleur -> Controleur: recupere le user qui est dans la session
 Controleur -> Dao: EFGDao.creerGroupe (idEFG,idUser)
 Dao -> SGBD: INSERT groupe_efg
-SGBD -> Dao: idGroupe crée
+SGBD -> Dao: idGroupe cree
 Dao -> SGBD: INSERT membre_groupe_efg
 SGBD -> Dao: OK ou pas
 Dao -> Controleur: idGroupe
