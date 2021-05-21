@@ -5,9 +5,13 @@
  */
 package fr.siomassy2021.controller;
 
+import fr.siomassy2021.dao.EFGDao;
 import fr.siomassy2021.model.Personne;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Administrateur
  */
-@WebServlet(name = "CreerGroupeServlet", urlPatterns = {"/creerGroupeEFG"})
-public class CreerGroupeServlet extends HttpServlet {
+@WebServlet(name = "CreerGroupeEFGServlet", urlPatterns = {"/creerGroupeEFG"})
+public class CreerGroupeEFGServlet extends HttpServlet {
 
     private static final String VUE = "/WEB-INF/groupe.jsp";
 
@@ -34,13 +38,21 @@ public class CreerGroupeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int idGroupe = 0;
         try {
             int idEFG = Integer.parseInt(request.getParameter("idEFG"));
             Personne user = (Personne) request.getSession(true).getAttribute("user");
-            response.sendRedirect("/EFG?idEFG=" + idEFG);
+            EFGDao dao = new EFGDao();
+            try {
+                idGroupe=dao.creerGroupe(idEFG, user.getId());
+            } catch (SQLException ex) {
+                Logger.getLogger(CreerGroupeEFGServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            response.sendRedirect("/AjouterMembreAuGroupeServlet?idEFG=" + idEFG + "&idGroupe="+ idGroupe );
         } catch (NumberFormatException e) {
             request.setAttribute("message", "idEFG doit etre entier");
             request.getRequestDispatcher("/WEB-INF/erreur.jsp").forward(request, response);
+
         }
 
     }

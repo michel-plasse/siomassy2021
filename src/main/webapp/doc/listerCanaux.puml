@@ -7,7 +7,7 @@ participant Vue
 Navigateur -> Controleur: GET /canaux
 Controleur -> Dao: CanalDao.getAll()
 Dao -> SGBD: SELECT ...
-SGBD -> Dao: ca naux trouvés 
+SGBD -> Dao: canaux trouves 
 Dao -> Controleur: List<Canal>;
 Controleur -> Vue: canaux.jsp
 Vue -> Navigateur: liste des canaux
