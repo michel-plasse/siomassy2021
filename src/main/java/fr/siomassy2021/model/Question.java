@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -22,13 +22,6 @@ public class Question {
         this.nbNonReponses = nbNonReponses;
         this.reponses = lesReponses;
     }
-
-    public Question() {
-    }
-    public Question(String libelle){
-        this.libelle = libelle;
-    }
-            
 
     public HashMap<String, Integer> getReponses() {
         return reponses;
@@ -54,4 +47,7 @@ public class Question {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
+    
+    
+    
 }

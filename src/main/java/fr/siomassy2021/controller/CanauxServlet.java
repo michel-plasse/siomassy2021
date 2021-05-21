@@ -4,8 +4,11 @@ import fr.siomassy2021.dao.CanalDao;
 import fr.siomassy2021.model.Canal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author michel
  */
-@WebServlet(name = "MesCanauxServlet", urlPatterns = {"/mescanaux"})
-public class MesCanauxServlet extends HttpServlet {
+@WebServlet(name = "CanauxServlet", urlPatterns = {"/canaux"})
+public class CanauxServlet extends HttpServlet {
   private String VUE_CANAUX = "WEB-INF/canaux.jsp";
 
    /**
@@ -34,7 +37,12 @@ public class MesCanauxServlet extends HttpServlet {
     // Le member id en dur
     int memberId = 1;
     // Recuperer les canaux 
-    List<Canal> canaux = CanalDao.getByMemberId(memberId);
+    List<Canal> canaux = null;
+      try {
+          canaux = CanalDao.getAll();
+      } catch (SQLException ex) {
+          Logger.getLogger(CanauxServlet.class.getName()).log(Level.SEVERE, null, ex);
+      }
     // Mettre les données (les canaux) en post-it de la requête
     // avec le nom "canaux"
     request.setAttribute("canaux", canaux);

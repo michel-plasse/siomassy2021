@@ -1,0 +1,20 @@
+ @startuml
+' par défaut, les couches sont disposées dans l'ordre d'apparition
+' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
+participant Navigateur
+participant Vue
+
+Navigateur -> Controleur: GET /inscription
+Controleur -> Controleur: verifie que les données sont valides
+Controleur -> Dao: Personne p1 = new Personne(...) \n PersonneDao.insert(p1)
+Dao -> SGBD: INSERT ...
+SGBD -> Dao: Rien ou Erreur 
+Dao -> Controleur: Rien ou SQLException;
+Controleur -> Vue: messsage.jsp ou \n inscription.jsp si  erreur
+Vue -> Navigateur: Le message 
+
+
+@enduml
+
+/' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
+
