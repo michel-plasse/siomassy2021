@@ -42,8 +42,9 @@ public class CreerGroupeEFGServlet extends HttpServlet {
         try {
             int idEFG = Integer.parseInt(request.getParameter("idEFG"));
             Personne user = (Personne) request.getSession(true).getAttribute("user");
-            EFGDao dao = new EFGDao();
+            
             try {
+                EFGDao dao = new EFGDao();
                 idGroupe=dao.creerGroupe(idEFG, 3);
                 response.sendRedirect("AjouterMembreAuGroupeServlet?idEFG=" + idEFG + "&idGroupe="+ idGroupe );
             } catch (SQLException ex) {

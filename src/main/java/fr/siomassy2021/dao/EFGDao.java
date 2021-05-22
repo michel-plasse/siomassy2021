@@ -22,6 +22,7 @@ public class EFGDao {
     public int creerGroupe(int idEFG, int idUser) throws SQLException {
         int idGroupe = 1;
         Connection connection = Database.getConnection();
+        // requete qui permet de récupérer l'id du dernier groupe
         Statement canal1 = connection.createStatement();
         String sql = "select MAX(id_groupe) as idgroupe FROM groupe_efg where id_efg=" + idEFG + ";";
         ResultSet res = canal1.executeQuery(sql);
@@ -29,14 +30,14 @@ public class EFGDao {
         while (res.next()) {
             idGroupe = res.getInt("idgroupe") + 1;
         }
-
+        // requete qui permet de créer le groupe
         String insert = "INSERT INTO groupe_efg (id_efg, id_groupe) VALUES (?, ?);";
         PreparedStatement stmt = connection.prepareStatement(insert);
 
         stmt.setInt(1, idEFG);
         stmt.setInt(2, idGroupe);
         stmt.execute();
-
+        // requete qui permet d'insérer dans le nouveau groupe l'utilisateur à l'origine de sa création 
         String insert2 = "INSERT INTO membre_groupe_efg (id_personne, id_efg,id_groupe) VALUES(?, ?, ?);";
         PreparedStatement stmt2 = connection.prepareStatement(insert2);
 
@@ -53,6 +54,7 @@ public class EFGDao {
         int idPersonne=0;
            
         Connection connection = Database.getConnection();
+        // requete qui permet de récupérer l'id de la personne qu'on tente d'insérer dans le groupe
         String sql = "SELECT id_personne from personne where email = ?;";
         PreparedStatement stmt = connection.prepareCall(sql);
         stmt.setString(1, email);
@@ -61,7 +63,7 @@ public class EFGDao {
             idPersonne = rs.getInt("id_personne");
         }
         
-        
+        // insertion du partipant dans le groupe
         String insert = "INSERT INTO membre_groupe_efg (id_personne, id_efg, id_groupe) VALUES (?, ?, ?);";
         //compile la requete
         PreparedStatement stmt2 = connection.prepareStatement(insert);
