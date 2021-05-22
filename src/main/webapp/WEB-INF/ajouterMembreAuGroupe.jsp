@@ -10,6 +10,8 @@
 
     <h1 class="success">Félicitation ! Vous venez de créer le groupe ${idGroupe}</h1>
     <h3>Ajouter un membre au groupe ${idGroupe}</h3>
+    <h2 class="erreur">${message}</h2>
+    <h2 class="success">${messageSuccess}</h2>
     
         <form method="post">
             Email : <input type="text" name="email">

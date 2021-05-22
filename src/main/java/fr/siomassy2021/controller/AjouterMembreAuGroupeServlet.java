@@ -27,9 +27,7 @@ public class AjouterMembreAuGroupeServlet extends HttpServlet {
 
     int idEFG;
     int idGroupe;
-      
 
-  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,28 +41,39 @@ public class AjouterMembreAuGroupeServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/erreur.jsp").forward(request, response);
 
         }
-        
+
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String email = request.getParameter("email");
-        
+        boolean valide = true;
+
         EFGDao dao = new EFGDao();
-        
+
         try {
             dao.ajouterMembreAuGroupe(email, idEFG, idGroupe);
         } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1062) {
+                request.setAttribute("message", "Ce participant fait déjà parti du groupe !");
+                valide = false;
+            }
+            if (ex.getErrorCode() == 1452) {
+                request.setAttribute("message", "Cette email est inconnu dans la base de données !");
+                valide = false;
+            }
             Logger.getLogger(AjouterMembreAuGroupeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if(valide){
+            request.setAttribute("messageSuccess", "Le participant a été ajouté avec succès !");
+        }
         
-        
+        request.getRequestDispatcher("/WEB-INF/ajouterMembreAuGroupe.jsp").forward(request, response);
+
     }
 
-   
     @Override
     public String getServletInfo() {
         return "Short description";
