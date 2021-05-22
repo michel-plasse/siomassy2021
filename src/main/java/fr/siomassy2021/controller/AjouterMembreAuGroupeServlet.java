@@ -51,6 +51,17 @@ public class AjouterMembreAuGroupeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String email = request.getParameter("email");
+        
+        EFGDao dao = new EFGDao();
+        
+        try {
+            dao.ajouterMembreAuGroupe(email, idEFG, idGroupe);
+        } catch (SQLException ex) {
+            Logger.getLogger(AjouterMembreAuGroupeServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
    

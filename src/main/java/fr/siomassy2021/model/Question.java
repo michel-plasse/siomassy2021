@@ -12,50 +12,45 @@ import java.util.HashMap;
  * @author borelibombo
  */
 public class Question {
-    
-    private String libelle;
-    private int nbNonReponses;
-    private HashMap<String,Integer> reponses;
 
-    public Question(String libelle, int nbNonReponses, HashMap<String, Integer> lesReponses) {
-        this.libelle = libelle;
-        this.nbNonReponses = nbNonReponses;
-        this.reponses = lesReponses;
-    }
+  private String libelle;
+  private int nbNonReponses;
+  private HashMap<String, Integer> reponses;
 
-    public Question() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  public Question(String libelle, int nbNonReponses, HashMap<String, Integer> lesReponses) {
+    this.libelle = libelle;
+    this.nbNonReponses = nbNonReponses;
+    this.reponses = lesReponses;
+  }
 
-    public Question(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  /** Crée une question avec juste son libellé.
+   * Utile dans QuestionDao.getReponsesByIdCanal */
+  public Question(String libelle) {
+    this.libelle = libelle;
+  }
 
-    public HashMap<String, Integer> getReponses() {
-        return reponses;
-    }
+  public HashMap<String, Integer> getReponses() {
+    return reponses;
+  }
 
-    public void setReponses(HashMap<String, Integer> reponses) {
-        this.reponses = reponses;
-    }
-    
-   
-    public int getNbNonReponses() {
-        return nbNonReponses;
-    }
+  public void setReponses(HashMap<String, Integer> reponses) {
+    this.reponses = reponses;
+  }
 
-    public void setNbNonReponses(int nbNonReponses) {
-        this.nbNonReponses = nbNonReponses;
-    }
+  public int getNbNonReponses() {
+    return nbNonReponses;
+  }
 
-    public String getLibelle() {
-        return libelle;
-    }
+  public void setNbNonReponses(int nbNonReponses) {
+    this.nbNonReponses = nbNonReponses;
+  }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-    
-    
-    
+  public String getLibelle() {
+    return libelle;
+  }
+
+  public void setLibelle(String libelle) {
+    this.libelle = libelle;
+  }
+
 }

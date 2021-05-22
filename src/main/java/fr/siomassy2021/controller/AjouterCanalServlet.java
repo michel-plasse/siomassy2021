@@ -21,7 +21,7 @@ import fr.siomassy2021.model.Canal;
  * Servlet implementation class AjouterCanalServelet
  */
 @WebServlet(name = "AjouterCanalServlet", urlPatterns = "/nouveauCanal")
-public class AjouterCanalServelet extends HttpServlet {
+public class AjouterCanalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final String VUE_FORM = "WEB-INF/nouveauCanal.jsp";
 
