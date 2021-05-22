@@ -6,7 +6,7 @@
 <%@taglib prefix="p" tagdir="/WEB-INF/tags/"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<p:header title="liste des questionnaires"/>
+<p:header title="Créer des questionnaires"/>
 
         <h1>Création de Questionnaire</h1>     
         <form id="creerquestionnaire" method="POST" >
