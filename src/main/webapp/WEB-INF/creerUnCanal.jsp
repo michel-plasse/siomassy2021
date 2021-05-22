@@ -12,15 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <section class="form">
-       <h2> connexion</h2>
-       <form action="" method="post">
-        <div class="imgcontainer">  
-	<img src="images/monchouette.jpg" alt="" width="100px"> 
-	</div> 
-          <input type="text" name="nom" placeholder="Nom du canal...." >
-           
-          <button class=" btn" type="submit"name="submit">Valider </button>
 
        </form>
        </div>
