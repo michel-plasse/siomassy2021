@@ -102,15 +102,12 @@ public class CanalDao {
         }
         return liste;
     }
-     public static List<Questionnaire> getQuestionnairesByIdCanal(int idCanal) {
-        Questionnaire q = new Questionnaire();
+  
+    public static List<Questionnaire> getQuestionnairesByIdFormateur(int idFormateur) {
+       Questionnaire q = new Questionnaire();
         List<Questionnaire> result = new ArrayList();
         result.add(q);
         return result;
-    }
-
-    public static List<Questionnaire> getQuestionnairesByIdFormateur(int idFormateur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
