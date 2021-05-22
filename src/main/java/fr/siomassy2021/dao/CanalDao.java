@@ -4,6 +4,7 @@ import fr.siomassy2021.model.Canal;
 import fr.siomassy2021.model.Efg;
 import fr.siomassy2021.model.Evaluation;
 import fr.siomassy2021.model.Question;
+import fr.siomassy2021.model.Questionnaire;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
