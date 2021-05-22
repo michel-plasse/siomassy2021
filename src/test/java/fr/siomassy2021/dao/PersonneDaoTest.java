@@ -38,7 +38,7 @@ public class PersonneDaoTest {
     PersonneDao instance = new PersonneDao();
     instance.insert(personne);
     // La personne devrait avoir le id 8
-    personne.setId(8); // ce devrait etre fait dans le insert
+//    personne.setId(8); // ce devrait etre fait dans le insert
     // Elle est bien dans la base
     // (il faut avoir redefini equals dans Personne)
     assertEquals(personne, PersonneDao.getByEmail("email@gmail.com"));
