@@ -17,8 +17,8 @@ public class QuestionDao {
     // Le résultat est toujours appelé result
     List<Question> result = new ArrayList<>();
     // Les canaux d'abord mis en dur
-    result.add(new Question());
-    result.add(new Question());
+    result.add(new Question("fini ?"));
+    result.add(new Question("ce point est compris ?"));
     return result;
 }
       public static List<Reponse> getReponsesByIdCanal(int IdCanal) throws SQLException {
