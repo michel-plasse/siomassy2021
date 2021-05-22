@@ -38,17 +38,18 @@ public class CreerGroupeEFGServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idGroupe = 0;
+        int idGroupe = 4;
         try {
             int idEFG = Integer.parseInt(request.getParameter("idEFG"));
             Personne user = (Personne) request.getSession(true).getAttribute("user");
             EFGDao dao = new EFGDao();
             try {
-                idGroupe=dao.creerGroupe(idEFG, user.getId());
+                idGroupe=dao.creerGroupe(idEFG, 3);
+                response.sendRedirect("AjouterMembreAuGroupeServlet?idEFG=" + idEFG + "&idGroupe="+ idGroupe );
             } catch (SQLException ex) {
                 Logger.getLogger(CreerGroupeEFGServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            response.sendRedirect("/AjouterMembreAuGroupeServlet?idEFG=" + idEFG + "&idGroupe="+ idGroupe );
+            
         } catch (NumberFormatException e) {
             request.setAttribute("message", "idEFG doit etre entier");
             request.getRequestDispatcher("/WEB-INF/erreur.jsp").forward(request, response);

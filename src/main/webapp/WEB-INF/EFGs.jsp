@@ -11,7 +11,7 @@
 
 <ul>
     <c:forEach items="${EFGs}" var="efg">
-        <li>${efg.intitule} : <a href="listerGroupesEfg?idEfg=${efg.idEFG}"><button type="button" class="btn-efg">Accéder aux groupes de l'EFG</button></a></li>
+        <li>${efg.intitule} : <a href="listerGroupesEfg?idEfg=${efg.idEFG}"><button type="button" class="btn-efg">Accéder aux groupes de l'EFG</button></a> <a href="creerGroupeEFG?idEFG=${efg.idEFG}"><button type="button" class="btn-efg">Créer un groupe</button></a></li>
         </c:forEach>
 </ul>
 </body>

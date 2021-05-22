@@ -7,10 +7,13 @@
 <%@taglib prefix="p" tagdir="/WEB-INF/tags/"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <p:header title="Ajouter membre au groupe"/>
-    <h1>Ajouter un membre au groupe ${idGroupe}</h1>
-    
-    
 
+    <h1 class="success">Félicitation ! Vous venez de créer le groupe ${idGroupe}</h1>
+    <h3>Ajouter un membre au groupe ${idGroupe}</h3>
     
+        <form method="post">
+            Email : <input type="text" name="email">
+            <input type="submit" value="Soumettre" />
+        </form>
     </body>
 </html>
