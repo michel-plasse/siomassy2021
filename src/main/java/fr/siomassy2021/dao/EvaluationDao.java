@@ -16,13 +16,11 @@ import java.util.List;
 public class EvaluationDao {
 
 
-  public static List<Evaluation> getListEvaluationByPersonne(int createur) throws SQLException {
+  public static List<Evaluation> getListEvaluations() throws SQLException {
     List<Evaluation> result = new ArrayList<Evaluation>();
     Connection connection = Database.getConnection();
-    // String sql = "SELECT * FROM evaluation WHERE id_createur=? ";
     String sql = "SELECT * FROM evaluation";
     PreparedStatement stmt = connection.prepareCall(sql);
-    // stmt.setInt(1, createur);
     ResultSet rs = stmt.executeQuery();
     while (rs.next()) {
       result .add(new Evaluation(

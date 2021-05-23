@@ -42,7 +42,7 @@ public class ListerEvaluationServlet extends HttpServlet {
         EvaluationDao evaluationDao = new EvaluationDao();
         List<Evaluation> listEvaluations =null;
         try {
-            listEvaluations = evaluationDao.getListEvaluationByPersonne(((Personne )session.getAttribute("user")).getId());
+            listEvaluations = evaluationDao.getListEvaluations();
         } catch (SQLException ex) {
             Logger.getLogger(ListerEvaluationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

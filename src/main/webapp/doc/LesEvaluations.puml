@@ -4,9 +4,8 @@
 participant Navigateur
 participant Vue
 
-Navigateur -> Controleur: GET /lesEvaluations?idSéanace=...
-Controleur -> Controleur: vérifier que le idSéance est entier
-Controleur -> Dao: SéanceDao.getByEvaluationsByIdSéance
+Navigateur -> Controleur: GET /evaluations
+Controleur -> Dao: evaluatinsDao.getByEvaluations()
 Dao -> SGBD: SELECT ...
 SGBD -> Dao: Evaluations trouvées
 Dao -> Controleur: List<Evaluation>
