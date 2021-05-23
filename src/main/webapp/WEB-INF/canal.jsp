@@ -7,7 +7,10 @@
 <!-- Ici, les liens vers vos différentes fonctionnalités -->
 <nav>
   <a href="efgs?idCanal=${idCanal}">EFGs</a>
+  <a href="evaluations?idCanal=${idCanal}">Évaluations</a>
+  <a href="presence?idCanal=${idCanal}">Présence</a>
   <a href="questionnaires?idCanal=${idCanal}">Questionnaires</a>
   <a href="questions?idCanal=${idCanal}">Questions</a>
+  <hr/>
   <a href="AjouterMembreAuCanal?idCanal=${idCanal}">Ajouter un membre au canal</a>
 </nav>
