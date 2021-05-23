@@ -21,6 +21,8 @@
         <a href="javascript: document.getElementById('resetDbForm').submit()">Réinitialiser
           la BD</a>
         <a href="${context}/canaux">Canaux</a>
+        <a href="${context}/presence">Presence</a>
+        <a href="${context}/evaluations">Evaluations</a>
       </nav>
       <nav>
         <c:if test="${sessionScope['user'] != null}">
