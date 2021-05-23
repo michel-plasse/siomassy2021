@@ -28,6 +28,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "presence", urlPatterns = {"/presence"})
 public class PresenceServlet extends HttpServlet {
     private final String VUE = "WEB-INF/presence.jsp";
+    private final String VUE_ERREUR= "/WEB-INF/erreur.jsp";
+
 
   
 
@@ -48,13 +50,19 @@ public class PresenceServlet extends HttpServlet {
         PresenceDao presenceDao = new PresenceDao();
         Seance seanceDemarre= presenceDao.getSeanceDemarre();
         session.setAttribute("seanceDemarre", seanceDemarre);
-        
+          if(session.getAttribute("user")==null){
+            request.setAttribute("message", "Vous etes pas connecté");
+            request.getRequestDispatcher(VUE_ERREUR).forward(request, response);
+        }
+          else{
+         
         int idPersonne = ((Personne) session.getAttribute("user")).getId();
+      
         boolean etudiantEstPresent =  presenceDao.etudiantEstPresent(seanceDemarre.getIdSeance(), idPersonne);
         session.setAttribute("etudiantEstPresent", etudiantEstPresent); 
         request.getRequestDispatcher(VUE).forward(request, response);
 
-    }
+    } }
     
     @Override
      protected void doPost(HttpServletRequest request,
