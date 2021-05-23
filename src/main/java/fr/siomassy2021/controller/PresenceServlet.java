@@ -43,7 +43,7 @@ public class PresenceServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-              HttpSession session = request.getSession();
+     HttpSession session = request.getSession();
 
         PresenceDao presenceDao = new PresenceDao();
         Seance seanceDemarre= presenceDao.getSeanceDemarre();
@@ -65,7 +65,7 @@ public class PresenceServlet extends HttpServlet {
         int idSeance = ((Seance) session.getAttribute("seanceDemarre")).getIdSeance();
         int idPersonne = ((Personne) session.getAttribute("user")).getId();
         presenceDao.etudiantPresent(idSeance, idPersonne);
-        request.getRequestDispatcher(VUE).forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/presence");
      }
 
 
