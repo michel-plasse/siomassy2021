@@ -11,7 +11,7 @@ BEGIN
   DECLARE v_stmts CURSOR FOR 
 		SELECT concat(p_prefix, ' ', table_name, ' ', p_suffix)
 		FROM information_schema.tables	
-		WHERE table_schema = DATABASE()
+		WHERE table_schema = DATABASE() AND table_type = 'BASE TABLE'
     ORDER BY table_name ASC;  
 	-- truncate or drop require disabling referential integrity constraints
 	SET FOREIGN_KEY_CHECKS = 0;
