@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,22 +40,32 @@ public class CreerGroupeEFGServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int idGroupe = 4;
-        try {
-            int idEFG = Integer.parseInt(request.getParameter("idEFG"));
-            Personne user = (Personne) request.getSession(true).getAttribute("user");
-            
-            try {
-                EFGDao dao = new EFGDao();
-                idGroupe=dao.creerGroupe(idEFG, 3);
-                response.sendRedirect("AjouterMembreAuGroupeServlet?idEFG=" + idEFG + "&idGroupe="+ idGroupe );
-            } catch (SQLException ex) {
-                Logger.getLogger(CreerGroupeEFGServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        } catch (NumberFormatException e) {
-            request.setAttribute("message", "idEFG doit etre entier");
+        HttpSession session = request.getSession(true);
+        Personne user = (Personne) session.getAttribute("user");
+        // on récupére l'idEFG qui est envoyé dans l'url
+        int idEFG = Integer.parseInt(request.getParameter("idEFG"));
+        
+        if (user == null) {
+            request.setAttribute("message", "Vous devez être connecté pour pouvoir créer un groupe !");
             request.getRequestDispatcher("/WEB-INF/erreur.jsp").forward(request, response);
+        } 
+        else {
+           
+            try {
 
+                try {
+                    EFGDao dao = new EFGDao();
+                    idGroupe = dao.creerGroupe(idEFG, user.getId());
+                    response.sendRedirect("AjouterMembreAuGroupeServlet?idEFG=" + idEFG + "&idGroupe=" + idGroupe);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CreerGroupeEFGServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } catch (NumberFormatException e) {
+                request.setAttribute("message", "idEFG doit etre entier");
+                request.getRequestDispatcher("/WEB-INF/erreur.jsp").forward(request, response);
+
+            }
         }
 
     }

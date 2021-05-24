@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,8 +32,9 @@ public class AjouterMembreAuGroupeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         try {
-            idEFG = Integer.parseInt(request.getParameter("idEFG"));
+            idEFG =  Integer.parseInt(request.getParameter("idEFG"));
             idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
             request.setAttribute("idGroupe", idGroupe);
             request.getRequestDispatcher("/WEB-INF/ajouterMembreAuGroupe.jsp").forward(request, response);
