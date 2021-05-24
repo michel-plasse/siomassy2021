@@ -12,7 +12,7 @@ Controleur -> Dao: EntrainementDao.\ngetByIdEntrainementIdEtudiant\n(idEntrainem
 Dao -> SGBD: SELECT...
 SGBD -> Dao: 
 Dao -> Controleur: EntrainementEtudiant
-Controleur -> Vue: entrainementEtudiant.jsp
+Controleur -> Vue: afficheEntrainementEtudiant.jsp
 Vue -> Navigateur: liste questions/reponses
 
 @enduml

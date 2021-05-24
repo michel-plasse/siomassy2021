@@ -1,6 +1,7 @@
 package fr.siomassy2021.dao;
 
 import fr.siomassy2021.model.EntrainementEtudiant;
+import fr.siomassy2021.model.Question;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,9 +18,7 @@ public class EntrainementDao {
   /**
    * Retourne un entrainement par idEntrainement
    *
-   * @param idEntrainement
-   * @param Questionnaire
-   * @param Canal
+   * @param idEtudiant
    * @return result
    * @throws java.sql.SQLException
    */
@@ -45,5 +44,41 @@ public class EntrainementDao {
 
     }
     return result;
+  }
+
+  /**
+   * Retourne les questions d'un entrainement par idEntrainement et idEtudiant
+   *
+   * @param IdEntrainement
+   * @param idEtudiant
+   * @return result
+   * @throws java.sql.SQLException
+   */
+  public static List<EntrainementEtudiant> getQuestionsByIdEntrainementIdEtudiant(int IdEntrainement, int idEtudiant) throws SQLException {
+    // Le résultat est toujours appelé result
+    List<EntrainementEtudiant> result = new ArrayList<>();
+    Connection connection = Database.getConnection();
+    // Les canaux d'abord mis en dur
+    String sql = "SELECT qcm.libelle, qcm.id_questionnaire, oq.id_option_qcm, oq.id_qcm, re.id_entrainement \n"
+            + "FROM qcm\n"
+            + "INNER JOIN option_qcm oq\n"
+            + "ON qcm.id_qcm = oq.id_qcm\n"
+            + "INNER JOIN reponse_entrainement re\n"
+            + "ON oq.id_option_qcm = re.id_option_qcm\n"
+            + "INNER JOIN entrainement_etudiant ee\n"
+            + "ON re.id_entrainement = ee.id_entrainement\n"
+            + "WHERE ee.id_entrainement=? AND ee.id_etudiant=?\n";
+    PreparedStatement stmt = connection.prepareCall(sql);
+    stmt.setInt(1, IdEntrainement);
+    stmt.setInt(2, idEtudiant);
+    ResultSet rs = stmt.executeQuery();
+    while (rs.next()) {
+      result.add(new EntrainementEtudiant(
+              rs.getInt("id_questionnaire"),
+              rs.getInt("id_entrainement"),
+              rs.getString("libelle")));
+    }
+    return result;
+
   }
 }

@@ -10,12 +10,17 @@
 <h1>Afficher un entrainement étudiant</h1>  
 <ul>
   <c:forEach items="${entrainements}" var="entrainement">
-    <li><a href="entrainement?idEntrainement=${entrainement.idEntrainement}">
-        
+    <li> 
+      <p><strong>Question: </strong>
+        ${entrainement.libelle}</P>  
+      <a href="entrainement?idEntrainement=${entrainement.idEntrainement}" >      
+        ${entrainement.libelle}
       </a>
     </li>   
+    <br>
   </c:forEach>
 </ul>
 </body>
 </html>
 <p:footer/>
+

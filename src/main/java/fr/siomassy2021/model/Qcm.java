@@ -13,7 +13,7 @@ public class Qcm {
   
   private int idQcm;
   private int idQuestionnaire;
-  private String libelle;
+  private String libelle; 
   private int idCanal;
 
   public Qcm(int idQcm, int idQuestionnaire, String libelle, int idCanal) {
