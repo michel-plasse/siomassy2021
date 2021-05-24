@@ -32,6 +32,42 @@ public class Evaluation implements Serializable {
     private Canal canal;
      
     private Personne  personne;
+    
+    private float note;
+    
+    private float moyenne;
+     
+    private float noteMax;
+      
+    private float noteMin;
+
+    public float getMoyenne() {
+        return moyenne;
+    }
+
+    public void setMoyenne(float moyenne) {
+        this.moyenne = moyenne;
+    }
+
+    public float getNoteMax() {
+        return noteMax;
+    }
+
+    public void setNoteMax(float noteMax) {
+        this.noteMax = noteMax;
+    }
+
+    public float getNoteMin() {
+        return noteMin;
+    }
+
+    public void setNoteMin(float noteMin) {
+        this.noteMin = noteMin;
+    }
+    
+    
+    
+    
 
     public Evaluation() {
     }
@@ -40,12 +76,31 @@ public class Evaluation implements Serializable {
         this.idEvaluation = idEvaluation;
     }
 
-    public Evaluation(Integer idEvaluation, String intitule, Timestamp passeeA, Time duree, Boolean estCorrigee) {
+    public Evaluation(Integer idEvaluation, String intitule, Timestamp passeeA, Time duree, Boolean estCorrigee, float note ) {
         this.idEvaluation = idEvaluation;
         this.intitule = intitule;
         this.passeeA = passeeA;
         this.duree = duree;
         this.estCorrigee = estCorrigee;
+        this.note = note;
+    }
+
+    public Evaluation(String intitule,Integer idEvaluation, float moyenne, float noteMax, float noteMin) {
+        this.intitule = intitule;
+        this.idEvaluation = idEvaluation;
+        this.moyenne = moyenne;
+        this.noteMax = noteMax;
+        this.noteMin = noteMin;
+        
+    }
+    
+    
+    public float getNote() {
+        return note;
+    }
+
+    public void setNote(float note) {
+        this.note = note;
     }
 
     public Integer getIdEvaluation() {

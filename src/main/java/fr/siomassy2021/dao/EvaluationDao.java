@@ -6,6 +6,7 @@
 package fr.siomassy2021.dao;
 
 import fr.siomassy2021.model.Evaluation;
+import fr.siomassy2021.model.NoteEvaluation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -67,20 +68,54 @@ public class EvaluationDao {
         return result;*/
     }
 
-public static List<Evaluation> getListEvaluations(int idCanal) throws SQLException {
+public static List<Evaluation> getListEvaluations(int idCanal, int idEtudiant) throws SQLException {
     List<Evaluation> result = new ArrayList<Evaluation>();
     Connection connection = Database.getConnection();
-    String sql = "select * from evaluation e where id_canal =? order by e.passee_a desc";
+    String sql =
+    "SELECT * FROM evaluation e left join note_evaluation ne on e.id_evaluation = "
+            + "ne.id_evaluation where e.id_canal =? "
+            + "and (ne.id_etudiant is null or ne.id_etudiant = ?) "
+            + "order by e.passee_a desc ";
     PreparedStatement stmt = connection.prepareCall(sql);
     stmt.setInt(1, idCanal);
+    stmt.setInt(2, idEtudiant);
     ResultSet rs = stmt.executeQuery();
     while (rs.next()) {
-      result .add(new Evaluation(
+      result.add(new Evaluation(
               rs.getInt("id_evaluation"),
               rs.getString("intitule"),
               rs.getTimestamp("passee_a"),
               rs.getTime("duree"),
-              rs.getBoolean("est_corrigee")));
+              rs.getBoolean("est_corrigee"),
+              rs.getFloat("note"))
+              );
+      
+    }
+    
+    
+    return result;
+  }
+
+    
+ public static Evaluation getInfoEvaluation(int id_evaluation) throws SQLException {
+    Evaluation result = new Evaluation();
+    Connection connection = Database.getConnection();
+    String sql = "SELECT e.id_evaluation , e.intitule,  AVG(note) as moyenne ,Max(note) as note_maximum, Min(note) as note_minimum  " +
+        "FROM evaluation e join note_evaluation ne  " +
+        "on e.id_evaluation = ne.id_evaluation  where e.id_evaluation= ? " +
+            "group by (e.id_evaluation)	";
+    PreparedStatement stmt = connection.prepareCall(sql);
+    stmt.setInt(1, id_evaluation);
+    ResultSet rs = stmt.executeQuery();
+    if (rs.next()) {
+      result = 
+            new Evaluation(
+                    rs.getString("intitule"),
+                    rs.getInt("id_evaluation"),
+                    rs.getFloat("moyenne"),
+                    rs.getFloat("note_maximum"),
+                    rs.getFloat("note_minimum")
+             );
       
     }
     

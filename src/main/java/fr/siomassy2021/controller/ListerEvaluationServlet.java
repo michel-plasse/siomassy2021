@@ -26,6 +26,8 @@ import javax.servlet.http.HttpSession;
 public class ListerEvaluationServlet extends HttpServlet {
     
     private final String VUE = "WEB-INF/listEvaluations.jsp";
+    private final String VUE_ERREUR= "/WEB-INF/erreur.jsp";
+
    
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -41,14 +43,22 @@ public class ListerEvaluationServlet extends HttpServlet {
         HttpSession session = request.getSession();
         EvaluationDao evaluationDao = new EvaluationDao();
         List<Evaluation> listEvaluations =null;
+
         try {
             int idCanal = Integer.parseInt(request.getParameter("idCanal"));
-            listEvaluations = evaluationDao.getListEvaluations(idCanal);
+        if (session.getAttribute("user")==null){
+            request.setAttribute("message", "Vous etes pas connecté");
+            request.getRequestDispatcher(VUE_ERREUR).forward(request, response);
+        }
+        else {     
+                   int idPersonne = ((Personne) session.getAttribute("user")).getId();
+                   listEvaluations = evaluationDao.getListEvaluations(idCanal, idPersonne);
+        }         
         } catch (SQLException ex) {
             Logger.getLogger(ListerEvaluationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("evaluations", listEvaluations);
-     
+    
         request.getRequestDispatcher(VUE).forward(request, response);
     }
 

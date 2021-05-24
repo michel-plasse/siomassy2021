@@ -21,16 +21,25 @@
             <th>La date</th>
             <th>Durée</th>
             <th>Est corrigée</th>
+            <th>Ma note</th>
           </tr>
            <c:forEach items="${evaluations}" var="evaluation">
-           <tr>
-            <td>${evaluation.intitule}</td>
+           <tr>${evaluation.estCorrigee}
+            <td>
+                   <c:if  test="${evaluation.estCorrigee == true}">
+                <a href="evaluation?evaluation=${evaluation.idEvaluation}">${evaluation.intitule}</a>
+                    </c:if>
+                 <c:if  test="${evaluation.estCorrigee == false}">
+                ${evaluation.intitule}
+                    </c:if></td>
             <td>${evaluation.passeeA}</td>
             <td>${evaluation.duree}</td>
             <td>${evaluation.estCorrigee ? 'Oui' : 'Non'}</td>
+            <td>${evaluation.estCorrigee ? evaluation.note : 'pas encore corrigé'}</td>
           </tr>
            </c:forEach>
         </table>
+        
     </body>
 </html>
 <p:footer/>
