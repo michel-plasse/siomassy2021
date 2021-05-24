@@ -18,7 +18,7 @@
         <table id="evaluations">
           <tr>
             <th>Intitulé</th>
-            <th>Passé à</th>
+            <th>La date</th>
             <th>Durée</th>
             <th>Est corrigée</th>
           </tr>

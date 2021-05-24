@@ -42,7 +42,8 @@ public class ListerEvaluationServlet extends HttpServlet {
         EvaluationDao evaluationDao = new EvaluationDao();
         List<Evaluation> listEvaluations =null;
         try {
-            listEvaluations = evaluationDao.getListEvaluations();
+            int idCanal = Integer.parseInt(request.getParameter("idCanal"));
+            listEvaluations = evaluationDao.getListEvaluations(idCanal);
         } catch (SQLException ex) {
             Logger.getLogger(ListerEvaluationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

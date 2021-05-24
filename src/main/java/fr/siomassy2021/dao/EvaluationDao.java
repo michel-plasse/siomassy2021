@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  *
- * @author borelibombo
+ * @author sana
  */
 public class EvaluationDao {
 
@@ -67,22 +67,29 @@ public class EvaluationDao {
         return result;*/
     }
 
-    public static List<Evaluation> getListEvaluations() throws SQLException {
-        List<Evaluation> result = new ArrayList<Evaluation>();
-        Connection connection = Database.getConnection();
-        String sql = "SELECT * FROM evaluation";
-        PreparedStatement stmt = connection.prepareCall(sql);
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            result.add(new Evaluation(
-                    rs.getInt("id_evaluation"),
-                    rs.getString("intitule"),
-                    rs.getTimestamp("passee_a"),
-                    rs.getTime("duree"),
-                    rs.getBoolean("est_corrigee")));
-        }
-
-        return result;
+public static List<Evaluation> getListEvaluations(int idCanal) throws SQLException {
+    List<Evaluation> result = new ArrayList<Evaluation>();
+    Connection connection = Database.getConnection();
+    String sql = "select * from evaluation e where id_canal =? order by e.passee_a desc";
+    PreparedStatement stmt = connection.prepareCall(sql);
+    stmt.setInt(1, idCanal);
+    ResultSet rs = stmt.executeQuery();
+    while (rs.next()) {
+      result .add(new Evaluation(
+              rs.getInt("id_evaluation"),
+              rs.getString("intitule"),
+              rs.getTimestamp("passee_a"),
+              rs.getTime("duree"),
+              rs.getBoolean("est_corrigee")));
+      
     }
+    
+    
+    return result;
+  }
+
+    public EvaluationDao() {
+    }
+
 
 }
