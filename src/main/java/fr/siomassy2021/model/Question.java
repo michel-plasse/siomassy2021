@@ -14,28 +14,19 @@ import java.util.HashMap;
 public class Question {
     
     private String libelle;
-    private int nbNonReponses;
-    private int nbReponse;
+    private int nbNonReponse;
+
     private HashMap<String,Integer> reponses;
 
-    public Question(String libelle, int nbNonReponses,int nbReponse, HashMap<String, Integer> lesReponses) {
+    public Question(String libelle, int nbNonReponses, HashMap<String, Integer> lesReponses) {
         this.libelle = libelle;
-        this.nbNonReponses = nbNonReponses;
+        this.nbNonReponse = nbNonReponses;
         this.reponses = lesReponses;
-        this.nbReponse = nbReponse;
+
     }
 
     public Question() {
     }
-
-    public int getNbReponse() {
-        return nbReponse;
-    }
-
-    public void setNbReponse(int nbReponse) {
-        this.nbReponse = nbReponse;
-    }
-
     public HashMap<String, Integer> getReponses() {
         return reponses;
     }
@@ -45,12 +36,12 @@ public class Question {
     }
     
    
-    public int getNbNonReponses() {
-        return nbNonReponses;
+    public int getNbNonReponse() {
+        return nbNonReponse;
     }
 
-    public void setNbNonReponses(int nbNonReponses) {
-        this.nbNonReponses = nbNonReponses;
+    public void setNbNonReponse(int nbNonReponse) {
+        this.nbNonReponse = nbNonReponse;
     }
 
     public String getLibelle() {
