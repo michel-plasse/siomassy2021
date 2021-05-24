@@ -3,15 +3,17 @@
 ' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
 participant Navigateur
 participant Vue
-
-Navigateur -> Controleur: GET /noterEvaluation?idEtudiant=...&&idEvaluation=...
-Controleur -> Controleur: verifier que les idEtudiant et idEvaluation sont entiers
-Controleur -> Dao: CanalDao.setNoteEvaluationByIdEtudiantAndIdEvaluation(idEtudiant,idEvaluation)
+== generer les notes vierges ==
+Navigateur -> Controleur: GET /notesEvaluation?idEvaluation=...
+Controleur -> Controleur: verifier que idEvaluation est entier
+Controleur -> Dao: EvaluationDao.genererNotesVides(idEvaluation)
 Dao -> SGBD: Insert ...
 SGBD -> Dao: note inserer
-Dao -> Controleur: Int;
-Controleur -> Vue: noteEvaliation.jsp
+Dao -> Controleur:rien
+Controleur -> Dao : EvaluationDao.getNotes(idEvaluation)
+Controleur -> Vue: notesEvaluation.jsp
 Vue -> Navigateur: html
+== saisir les notes ==
 @enduml
 
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
@@ -27,12 +29,14 @@ le chemin (utl) /noterEvaluation.
 => commit
 
 2e étape
-Mettre des questions en dur dans le contrôleur,
+Mettre des les infos en dur dans le contrôleur,
 et les afficher dans la JSP.
 => commit
 
 3e étape
-Appel de la Dao, qui construit la liste en dur
-Le memberId est aussi mis en dur à 1
+Appel de la Dao, qui construit la note pour chaque etudiant en dur
+le idEtudiant et le idEvaluation sont aussi mis en dur à 1
 => commit
+
+pour noter une eva il faut creer les notes
 '/
