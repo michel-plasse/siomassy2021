@@ -13,44 +13,46 @@ import java.util.HashMap;
  */
 public class Question {
 
-  private String libelle;
-  private int nbNonReponses;
-  private HashMap<String, Integer> reponses;
+    private String libelle;
+    private int nbNonReponse;
+    private HashMap<String, Integer> reponses;
 
-  public Question(String libelle, int nbNonReponses, HashMap<String, Integer> lesReponses) {
-    this.libelle = libelle;
-    this.nbNonReponses = nbNonReponses;
-    this.reponses = lesReponses;
-  }
+    public Question(String libelle, int nbNonReponse, HashMap<String, Integer> lesReponses) {
+        this.libelle = libelle;
+        this.nbNonReponse = nbNonReponse;
+        this.reponses = lesReponses;
 
-  /** Crée une question avec juste son libellé.
-   * Utile dans QuestionDao.getReponsesByIdCanal */
-  public Question(String libelle) {
-    this.libelle = libelle;
-  }
+    }
 
-  public HashMap<String, Integer> getReponses() {
-    return reponses;
-  }
+    public Question() {
+    }
 
-  public void setReponses(HashMap<String, Integer> reponses) {
-    this.reponses = reponses;
-  }
+    public Question(String libelle) {
+        this.libelle = libelle;
+    }
+    
+    public String getLibelle() {
+        return libelle;
+    }
 
-  public int getNbNonReponses() {
-    return nbNonReponses;
-  }
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
 
-  public void setNbNonReponses(int nbNonReponses) {
-    this.nbNonReponses = nbNonReponses;
-  }
+    public int getNbNonReponse() {
+        return nbNonReponse;
+    }
 
-  public String getLibelle() {
-    return libelle;
-  }
+    public void setNbNonReponse(int nbNonReponse) {
+        this.nbNonReponse = nbNonReponse;
+    }
 
-  public void setLibelle(String libelle) {
-    this.libelle = libelle;
-  }
+    public HashMap<String, Integer> getReponses() {
+        return reponses;
+    }
+
+    public void setReponses(HashMap<String, Integer> reponses) {
+        this.reponses = reponses;
+    }
 
 }

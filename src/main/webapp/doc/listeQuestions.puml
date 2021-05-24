@@ -1,4 +1,4 @@
-@startuml
+                         @startuml
 ' par défaut, les couches sont disposées dans l'ordre d'apparition
 ' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
 participant Navigateur
@@ -17,17 +17,17 @@ Vue -> Navigateur: html
 /' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
 1ere étape
 Créer le contrôleur et une vue minimale, et tester
-Pour cela, créer une servlet MesCanauxServlet dans fr.siomassy2021.controller, avec
-le chemin (utl) /mescanaux.
-=> commit
+Pour cela, créer une servlet ListerQuestionsServlet dans fr.siomassy2021.controller, avec
+le chemin (utl) /questions.
+=> je n ai malheureusement pas eu le reflexe de commiter 
 
 2e étape
 Mettre des questions en dur dans le contrôleur,
 et les afficher dans la JSP.
-=> commit
+=> commiter
 
 3e étape
 Appel de la Dao, qui construit la liste en dur
 Le memberId est aussi mis en dur à 1
-=> commit
+=> commiter et push après aprobation du prof
 '/

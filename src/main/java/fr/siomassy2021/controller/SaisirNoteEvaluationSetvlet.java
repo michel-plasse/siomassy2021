@@ -5,8 +5,8 @@
  */
 package fr.siomassy2021.controller;
 
-import fr.siomassy2021.dao.ListerQuestionsDao;
-import fr.siomassy2021.model.Question;
+import fr.siomassy2021.dao.EvaluationDao;
+import fr.siomassy2021.model.NoteEvaluation;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,30 +22,30 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author borelibombo
  */
-@WebServlet(name = "ListerQuestionsServlet", urlPatterns = {"/questions"})
-public class ListerQuestionsServlet extends HttpServlet {
+@WebServlet(name = "SaisirNoteEvaluationSetvlet", urlPatterns = {"/noteEvaluation"})
+public class SaisirNoteEvaluationSetvlet extends HttpServlet {
 
-    private final String VUE= "/WEB-INF/questions.jsp";
-    private final String VUE_ERREUR= "/WEB-INF/erreur.jsp";
-    
+    private final String VUE = "/WEB-INF/saisirNoteEvaluation.jsp";
+    private final String VUE_ERREUR = "/WEB-INF/erreur.jsp";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idCanal=1;
-        String vue= VUE;
+        int idEvaluation = 2;
+        String vue = null;
         // appel a la DAO 
-        List<Question> questions ;
+        List<NoteEvaluation> notes = null;
         try {
-            questions = ListerQuestionsDao.getQuestionsByIdCanal(idCanal);
+            EvaluationDao.genererNotesVides(idEvaluation);
             // mis en post'it
-            request.setAttribute("questions", questions);
+            //request.setAttribute("notes", notes);   
             // passage a la jsp
         } catch (SQLException ex) {
             Logger.getLogger(ListerQuestionsServlet.class.getName()).log(Level.SEVERE, null, ex);
-            vue=VUE_ERREUR;
+            vue = VUE_ERREUR;
             request.setAttribute("message", ex.getMessage());
         }
-        request.getRequestDispatcher(VUE).forward(request, response);        
+        request.getRequestDispatcher(VUE).forward(request, response);
     }
 
     @Override
