@@ -1,0 +1,47 @@
+ @startuml
+' par défaut, les couches sont disposées dans l'ordre d'apparition
+' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
+participant Navigateur
+participant Vue
+
+== Recuperer formulaire ==
+Navigateur -> Controleur: GET /ajouterMembreCanal?idcanal=...
+Controleur -> Controleur: verifie idCanal est entier
+Controleur -> Dao: CanalDao.getById(idCanal)
+Dao -> SGBD: SELECT
+SGBD -> Dao: Canal trouvé
+Dao -> Controleur: Canal
+Controleur -> Vue: ajouterMembreCanal.jsp
+Vue -> Navigateur: formulaire
+
+== Soumettre formulaire ==
+Navigateur -> Controleur: POST /ajouterMembreCanal\nidCanal,email
+Controleur -> Controleur: verifie email n'est pas vide, idCanal est entier
+Controleur -> Dao: PersonneDao.getByEmail(email)
+Dao -> Controleur: Personne trouvée ou null
+Controleur -> Dao: CanalDao.ajouterMembreCanal(idCanal, idPersonne)
+Dao -> SGBD: INSERT
+SGBD -> Dao: Rien
+Dao -> Controleur: Rien ou exception
+Controleur -> Controleur: Vérifier exception, si doublon ou inconnu
+Controleur -> Vue: message.jsp
+Vue -> Navigateur: affiche message
+@enduml
+
+/' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
+1ere étape
+Créer le contrôleur et une vue minimale, et tester
+Pour cela, créer une servlet ListerEFGServlet dans fr.siomassy2021.controller, avec
+le chemin (utl) /efgs
+=> commit
+
+2e étape
+Mettre des EFGs en dur dans le contrôleur,
+et les afficher dans la JSP.
+=> commit
+
+3e étape
+Appel de la Dao, qui construit la liste en dur
+Le memberId est aussi mis en dur à 1
+=> commit
+'/

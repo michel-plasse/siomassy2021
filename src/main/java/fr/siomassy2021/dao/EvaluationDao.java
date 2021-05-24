@@ -5,8 +5,7 @@
  */
 package fr.siomassy2021.dao;
 
-import fr.siomassy2021.model.Etudiant;
-import fr.siomassy2021.model.NoteEvaluation;
+import fr.siomassy2021.model.Evaluation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +22,6 @@ public class EvaluationDao {
     public static void genererNotesVides(int idEvaluation) throws SQLException {
 
         Connection connection = Database.getConnection();
-        
 
         String sql = "INSERT IGNORE INTO note_evaluation(id_etudiant, id_evaluation)\n"
                 + "SELECT t1.id_personne,t2.id_evaluation\n"
@@ -67,6 +65,24 @@ public class EvaluationDao {
             result.add(eval);
         }
         return result;*/
-
     }
+
+    public static List<Evaluation> getListEvaluations() throws SQLException {
+        List<Evaluation> result = new ArrayList<Evaluation>();
+        Connection connection = Database.getConnection();
+        String sql = "SELECT * FROM evaluation";
+        PreparedStatement stmt = connection.prepareCall(sql);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            result.add(new Evaluation(
+                    rs.getInt("id_evaluation"),
+                    rs.getString("intitule"),
+                    rs.getTimestamp("passee_a"),
+                    rs.getTime("duree"),
+                    rs.getBoolean("est_corrigee")));
+        }
+
+        return result;
+    }
+
 }

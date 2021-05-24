@@ -1,0 +1,23 @@
+@startuml
+' par défaut, les couches sont disposées dans l'ordre d'apparition
+' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
+participant Navigateur
+participant Vue
+
+Navigateur -> Controleur: GET /presence
+Controleur -> Controleur: récupère user de la session
+Controleur -> Dao: presenceDao.getSeanceDemarre()
+Dao -> SGBD: SELECT ...
+SGBD -> Dao: lignes trouvées
+Dao -> Controleur: Seance
+Controleur -> Vue: presence.jsp
+Vue -> Navigateur: html
+Navigateur -> Controleur: doPost/presence
+Controleur -> Dao: presenceDao.etudiantPresent(idSeance, idPersonne)
+Dao -> SGBD: Insert ...
+SGBD -> Dao: Insertion effectuée
+Dao -> Controleur:
+Controleur -> Vue: presence.jsp
+Vue -> Navigateur: html
+@enduml
+
