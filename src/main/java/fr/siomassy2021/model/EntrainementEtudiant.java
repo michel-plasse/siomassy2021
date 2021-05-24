@@ -5,7 +5,6 @@
  */
 package fr.siomassy2021.model;
 
-import java.util.HashMap;
 
 /**
  *
@@ -16,14 +15,30 @@ public class EntrainementEtudiant {
   private int idEntrainement;
   private int idEtudiant;
   private String libelle;
+  private Question question;
 
-  public EntrainementEtudiant(int idEntrainementEtudiant, int idEtudiant, String libelle) {
-    this.idEntrainement = idEntrainementEtudiant;
+  public EntrainementEtudiant(int idEntrainement, int idEtudiant, String libelle, Question question) {
+    this.idEntrainement = idEntrainement;
+    this.idEtudiant = idEtudiant;
+    this.libelle = libelle;
+    this.question = question;
+  } 
+  public EntrainementEtudiant(int idEntrainement, int idEtudiant, String libelle) {
+    this.idEntrainement = idEntrainement;
     this.idEtudiant = idEtudiant;
     this.libelle = libelle;
   }
 
-  public EntrainementEtudiant(int idEntrainement, Canal canal) {
+  public EntrainementEtudiant(int idEntrainement, int idEtudiant) {
+    this.idEntrainement = idEntrainement;
+    this.idEtudiant = idEtudiant;
+  }
+
+  public EntrainementEtudiant(int idEntrainement) {
+    this.idEntrainement = idEntrainement;
+  }
+  
+  public EntrainementEtudiant() {
   }
 
   public int getIdEntrainement() {
@@ -38,6 +53,10 @@ public class EntrainementEtudiant {
     return libelle;
   }
 
+  public Question getQuestion() {
+    return question;
+  }
+
   public void setIdEntrainement(int idEntrainement) {
     this.idEntrainement = idEntrainement;
   }
@@ -49,6 +68,14 @@ public class EntrainementEtudiant {
   public void setLibelle(String libelle) {
     this.libelle = libelle;
   }
+
+  public void setQuestion(Question question) {
+    this.question = question;
+  }
+
+
+  
+
 
   
   

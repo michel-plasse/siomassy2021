@@ -13,4 +13,6 @@
   <a href="questions?idCanal=${idCanal}">Questions</a>
   <hr/>
   <a href="AjouterMembreAuCanal?idCanal=${idCanal}">Ajouter un membre au canal</a>
+  <a href="entrainementsEtudiant?idCanal=${idCanal}">Entrainements étudiant</a>
+
 </nav>

@@ -4,15 +4,16 @@
 participant Navigateur
 participant Vue
 
-== demarrage de l entrainement ==
-Navigateur -> Controleur: POST entrainement?idEntrainement=...
-Controleur -> Controleur: verifie que idEntrainement est entier 
-Controleur -> Controleur: recupere le user de la session 
-Controleur -> Dao: EntrainementDao.\ndemarrerEntrainementEtudiant\n(idEntrainement,idEtudiant)
-Dao -> SGBD: INSERT...
-SGBD -> Dao: ok ou pas
-Dao -> Controleur: ok ou pas
-Controleur -> Navigateur: url=="entrainementEtudiant?idEntrainement=..."\nresponse.sendRedirect(url)
+== affichage d'un entrainement ==
+Navigateur -> Controleur: GET /entrainementEtudiant_n?idEntrainement=...
+Controleur -> Controleur: verifie que idEntrainement est entier
+Controleur -> Controleur: recupere le user de la session
+Controleur -> Dao: EntrainementDao.\ngetByIdEntrainementIdEtudiant\n(idEntrainement,idEtudiant)
+Dao -> SGBD: SELECT...
+SGBD -> Dao: 
+Dao -> Controleur: EntrainementEtudiant
+Controleur -> Vue: afficheEntrainementEtudiant.jsp
+Vue -> Navigateur: liste questions/reponses
 
 @enduml
 
