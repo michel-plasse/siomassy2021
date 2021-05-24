@@ -1,4 +1,4 @@
-@startuml
+                         @startuml
 ' par défaut, les couches sont disposées dans l'ordre d'apparition
 ' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
 participant Navigateur

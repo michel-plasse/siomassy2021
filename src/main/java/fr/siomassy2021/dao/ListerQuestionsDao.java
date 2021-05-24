@@ -26,7 +26,7 @@ public class ListerQuestionsDao {
         List<Question> result = new ArrayList();
         HashMap<String, Integer> reponses = new HashMap();;
 
-        String sql = "SELECT * FROM stat_sur_reponses WHERE id_canal=?";
+        String sql ="SELECT * FROM stat_sur_reponses WHERE id_canal=?";
 
         PreparedStatement stmt = connection.prepareCall(sql);
         stmt.setInt(1, idCanal);
@@ -48,7 +48,6 @@ public class ListerQuestionsDao {
             questionCourante.getReponses().put(reponse, nbReponses);
         }
         return result;
-
     }
 }
 //avooir le libelle jusqu'au nb_reponse

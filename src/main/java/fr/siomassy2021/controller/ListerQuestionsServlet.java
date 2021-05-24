@@ -5,13 +5,10 @@
  */
 package fr.siomassy2021.controller;
 
-import fr.siomassy2021.dao.CanalDao;
 import fr.siomassy2021.dao.ListerQuestionsDao;
 import fr.siomassy2021.model.Question;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +31,7 @@ public class ListerQuestionsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idCanal= 1;
+        int idCanal=1;
         String vue= VUE;
         // appel a la DAO 
         List<Question> questions ;
@@ -48,8 +45,7 @@ public class ListerQuestionsServlet extends HttpServlet {
             vue=VUE_ERREUR;
             request.setAttribute("message", ex.getMessage());
         }
-        request.getRequestDispatcher(VUE).forward(request, response);
-        
+        request.getRequestDispatcher(VUE).forward(request, response);        
     }
 
     @Override

@@ -28,5 +28,4 @@ FROM
             INNER JOIN
         question q
   GROUP BY q.id_canal, rq.id_question
-) t3 ON t1.id_question = t3.id_question AND t2.id_canal = t3.id_canal
-WHERE t1.id_canal = 1;
+) t3 ON t1.id_question = t3.id_question AND t2.id_canal = t3.id_canal;
