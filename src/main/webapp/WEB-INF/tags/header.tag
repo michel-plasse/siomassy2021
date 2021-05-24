@@ -20,15 +20,17 @@
         <a href="${context}/.">Accueil</a>
         <a href="javascript: document.getElementById('resetDbForm').submit()">Réinitialiser
           la BD</a>
+        <a href="${context}/canaux">Canaux</a>
       </nav>
       <nav>
         <c:if test="${sessionScope['user'] != null}">
           <form action="${context}/connexion" method="post">
-            <button type="submit">Déconnecter ${sessionScope['user'].login}</button>
+            <button type="submit">Déconnecter ${sessionScope['user'].email}</button>
             <input type="hidden" name="action" value="deconnecter"/>
           </form>
         </c:if>
         <c:if test="${sessionScope['user'] == null}">
+          <a href="${context}/inscription">Inscription</a>
           <a href="${context}/connexion">Connexion</a>
         </c:if>
         ${applicationScope["nbUtilisateurs"]} utilisateurs

@@ -1,0 +1,12 @@
+@startuml
+
+Navigateur -> Controleur: GET /reponses?idCanal=...
+Controleur -> Controleur: verifie idCanal est entier
+Controleur -> Dao: CanalDao.getReponsesByIdCanal(get IdCanal())
+Dao -> SGBD: SELECT ...
+SGBD -> Dao: reponses trouvees 
+Dao -> Controleur: List<Reponses>;
+Controleur -> Vue: reponsesQuestion.jsp
+Vue -> Navigateur: ListeReponses
+
+@enduml

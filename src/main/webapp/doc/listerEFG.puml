@@ -30,4 +30,8 @@ et les afficher dans la JSP.
 Appel de la Dao, qui construit la liste en dur
 Le memberId est aussi mis en dur à 1
 => commit
-'/
+
+4e étape 
+Développer la Dao avec les requête SQL afin qu une méthode getEFGSByIdCanal(id_canal)
+recupere la liste des EFGs présent en base de données. 
+=>commit
