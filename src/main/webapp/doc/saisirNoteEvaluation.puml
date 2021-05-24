@@ -1,0 +1,42 @@
+@startuml
+' par défaut, les couches sont disposées dans l'ordre d'apparition
+' nous utilison participant pour préciser qu'après Navigateur il y a Vue et non Controleur
+participant Navigateur
+participant Vue
+== generer les notes vierges ==
+Navigateur -> Controleur: GET /notesEvaluation?idEvaluation=...
+Controleur -> Controleur: verifier que idEvaluation est entier
+Controleur -> Dao: EvaluationDao.genererNotesVides(idEvaluation)
+Dao -> SGBD: Insert ...
+SGBD -> Dao: note inserer
+Dao -> Controleur:rien
+Controleur -> Dao : EvaluationDao.getNotes(idEvaluation)
+Controleur -> Vue: notesEvaluation.jsp
+Vue -> Navigateur: html
+== saisir les notes ==
+@enduml
+
+/' (commentaire sur plusieurs lignes, comme en Java, avec ' qui remplace *)
+
+    L intitulé et la date de passage de l evaluation
+    La liste des étudiants ayant participer
+    Un champ de saisi pour que le formateur insère une note
+
+1ere étape
+Créer le contrôleur et une vue minimale, et tester
+Pour cela, créer une servlet NoteEvaluationSetvlet dans fr.siomassy2021.controller, avec
+le chemin (utl) /noterEvaluation.
+=> commit
+
+2e étape
+Mettre des les infos en dur dans le contrôleur,
+et les afficher dans la JSP.
+=> commit
+
+3e étape
+Appel de la Dao, qui construit la note pour chaque etudiant en dur
+le idEtudiant et le idEvaluation sont aussi mis en dur à 1
+=> commit
+
+pour noter une eva il faut creer les notes
+'/

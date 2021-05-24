@@ -9,7 +9,7 @@
           <c:forEach items="${question.reponses}" var="reponse">
               ${reponse.key} (${reponse.value})
           </c:forEach>
-          (manque ${question.nbNonReponses} réponses)
+          (manque ${question.nbNonReponse} réponses)
       </li>
   </c:forEach>
 </ol>

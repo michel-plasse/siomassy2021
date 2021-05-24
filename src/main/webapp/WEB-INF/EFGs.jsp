@@ -9,10 +9,27 @@
 <p:header title="Erreur"/>
 <h1>Liste d'EFGs</h1>
 
-<ul>
-    <c:forEach items="${EFGs}" var="efg">
-        <li>${efg.intitule} : <a href="listerGroupesEfg?idEfg=${efg.idEFG}"><button type="button" class="btn-efg">Accéder aux groupes de l'EFG</button></a> <a href="creerGroupeEFG?idEFG=${efg.idEFG}"><button type="button" class="btn-efg">Créer un groupe</button></a></li>
+
+<table>
+    <thead> <!-- En-tête du tableau -->
+        <tr>
+            <th>N°</th>
+            <th>Intitule</th>
+            <th>Accès au groupe de l'EFG</th>
+        </tr>
+    </thead>
+    <tbody> <!-- Corps du tableau -->
+        <c:forEach items="${EFGs}" var="efg">
+
+            <tr>
+                <td>${efg.idEFG}</td>
+                <td>${efg.intitule}</td>
+                <td><a href="listerGroupesEfg?idEfg=${efg.idEFG}"><button type="button" class="btn-efg">Accéder aux groupes de l'EFG</button></a></td>
+            </tr>
+
         </c:forEach>
-</ul>
+    </tbody>
+</table>
+
 </body>
 </html>

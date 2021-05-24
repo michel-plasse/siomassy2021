@@ -12,6 +12,7 @@
 /* Zone de navigation (liens) */
 nav {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
 }
@@ -33,6 +34,9 @@ nav > a:hover {
   margin: 0;
   padding: 0;
   border-bottom: solid 1px var(--borderBgLight);
+}
+#mainNav, #mainNav > nav {
+    flex-direction: row;
 }
 
 body {
