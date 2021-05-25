@@ -9,14 +9,36 @@
    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
        
-       <link rel="stylesheet" type="text/css" href="feuillePresence.css"/>
+       <style>
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 200px;
+}
+</style>
     </head>
     <body>
        
     <form method="POST">
-         <fieldset>
-        
-        <label>Nom: <%= ((Personne) session.getAttribute("user")).getNom()%><label/>
+        <div>
+        <label>Nom: ${user.getNom()}<label/>
         <label>Prénom: <%=((Personne) session.getAttribute("user")).getPrenom()%><label/>
         <br/>    
         <label>Seance <%=((Seance) session.getAttribute("seanceDemarre")).getIdSeance()%> démarré le <%=((Seance) session.getAttribute("seanceDemarre")).getDebutA()%> <label/> 
@@ -27,9 +49,23 @@
         <c:if  test="${sessionScope['etudiantEstPresent'] == true}">
         Vous etes présent pour cette séance
         </c:if>
-
-  </fieldset>
+        </div>
     </form>
+       
+        <h1>Liste des presents</h1>     
+        <table id="evaluations">
+          <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+          </tr>
+           <c:forEach items="${listPresenceSeance}" var="presence">
+           <tr>
+       
+            <td>${presence.getIdPersonne().getNom()}</td>
+            <td>${presence.getIdPersonne().getPrenom()}</td>
+          </tr>
+           </c:forEach>
+        </table>
      
 
  

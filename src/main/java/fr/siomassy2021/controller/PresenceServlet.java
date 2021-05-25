@@ -48,10 +48,14 @@ public class PresenceServlet extends HttpServlet {
      HttpSession session = request.getSession();
 
         PresenceDao presenceDao = new PresenceDao();
-        Seance seanceDemarre= presenceDao.getSeanceDemarre();
+        int idCanal = Integer.parseInt(request.getParameter("idCanal"));
+        Seance seanceDemarre= presenceDao.getSeanceDemarre(idCanal);
         session.setAttribute("seanceDemarre", seanceDemarre);
           if(session.getAttribute("user")==null){
             request.setAttribute("message", "Vous etes pas connecté");
+            request.getRequestDispatcher(VUE_ERREUR).forward(request, response);
+        } else if(seanceDemarre==null){
+            request.setAttribute("message", "pas de seance disponible");
             request.getRequestDispatcher(VUE_ERREUR).forward(request, response);
         }
           else{
@@ -60,7 +64,16 @@ public class PresenceServlet extends HttpServlet {
       
         boolean etudiantEstPresent =  presenceDao.etudiantEstPresent(seanceDemarre.getIdSeance(), idPersonne);
         session.setAttribute("etudiantEstPresent", etudiantEstPresent); 
+         try {
+      
+             session.setAttribute("listPresenceSeance", presenceDao.getListPresenceSeance(seanceDemarre.getIdSeance())); 
+         } catch (SQLException ex) {
+             Logger.getLogger(PresenceServlet.class.getName()).log(Level.SEVERE, null, ex);
+         
+         }
+         
         request.getRequestDispatcher(VUE).forward(request, response);
+        
 
     } }
     
@@ -73,8 +86,10 @@ public class PresenceServlet extends HttpServlet {
         int idSeance = ((Seance) session.getAttribute("seanceDemarre")).getIdSeance();
         int idPersonne = ((Personne) session.getAttribute("user")).getId();
         presenceDao.etudiantPresent(idSeance, idPersonne);
-        response.sendRedirect(request.getContextPath() + "/presence");
+        response.sendRedirect(request.getContextPath() + "/presence?idCanal="+ Integer.parseInt(request.getParameter("idCanal")));
      }
+     
+     
 
 
 

@@ -24,12 +24,13 @@ import java.util.logging.Logger;
  */
 public class PresenceDao {
 
-    public Seance getSeanceDemarre() {
+    public Seance getSeanceDemarre(int idCanal) {
             Seance result = null;
         try {
             Connection connection = Database.getConnection();
-            String sql = "select * from  seance s where datediff( now(), debute_a) = 0";
+            String sql = "select * from  seance s where datediff( now(), debute_a) = 0 and id_canal = ?";
             PreparedStatement stmt = connection.prepareCall(sql);
+            stmt.setInt(1, idCanal);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 result = new Seance(
@@ -78,10 +79,32 @@ public class PresenceDao {
         }
          return isPresent;
   }
-}
-  
     
-   
+    
+    public static List<PresenceSeance> getListPresenceSeance(int idSeance) throws SQLException {
+    List<PresenceSeance> result = new ArrayList<PresenceSeance>();
+    Connection connection = Database.getConnection();
+    String sql =
+    "select * from  presence_seance ps join personne p on ps.id_personne =p.id_personne where ps.id_seance = ? ";
+    PreparedStatement stmt = connection.prepareCall(sql);
+    stmt.setInt(1, idSeance);
+    ResultSet rs = stmt.executeQuery();
+    while (rs.next()) {
+      Personne pers =new Personne(rs.getInt("id_personne"), rs.getString("prenom"), rs.getString("nom"));
+      result.add(new PresenceSeance(
+            pers,
+            null,
+            0 ));
+      
+    }
+    
+    
+    return result;
+        }
+        
+}
+
+  
     
     
 

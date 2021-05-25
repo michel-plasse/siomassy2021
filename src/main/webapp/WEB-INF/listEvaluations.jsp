@@ -24,7 +24,7 @@
             <th>Ma note</th>
           </tr>
            <c:forEach items="${evaluations}" var="evaluation">
-           <tr>${evaluation.estCorrigee}
+           <tr>
             <td>
                    <c:if  test="${evaluation.estCorrigee == true}">
                 <a href="evaluation?evaluation=${evaluation.idEvaluation}">${evaluation.intitule}</a>

@@ -6,7 +6,7 @@ participant Vue
 
 Navigateur -> Controleur: GET /evaluations
 Controleur -> Controleur: récupère user de la session
-Controleur -> Dao: evaluationDao.getListEvaluationByPersonne(user.getId())
+Controleur -> Dao: evaluationDao.getListEvaluations(idCanal, idPersonne)
 Dao -> SGBD: SELECT ...
 SGBD -> Dao: lignes trouvées
 Dao -> Controleur: ArrayList<Evaluation>
